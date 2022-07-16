@@ -1,0 +1,7 @@
+/*mixin footer*/
+/*Se creo un mixin para el footer*/
+@mixin redesHover ($color) {
+    background-color: $color;
+    color: $Blanco;
+    box-shadow: 0px 0px 20px $color;
+}

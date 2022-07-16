@@ -1,0 +1,278 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+/*Body*/
+* {
+  font-family: 'Bebas Neue', cursive; }
+
+body {
+  background: url("../img/fondo/fondo4.jpg"); }
+
+.color_title {
+  color: #a50000; }
+
+/*mixin footer*/
+/*Se creo un mixin para el footer*/
+/*Navbar*/
+/*Se uso un maps para modificar los colores del nav*/
+nav div.offcanvas {
+  width: 200px; }
+
+.nav_shadow {
+  box-shadow: 1px 1px 5px black; }
+
+.logo {
+  width: 5rem;
+  height: auto;
+  justify-content: space-evenly; }
+
+.nav {
+  background: #292929;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap; }
+  .nav .navbar-nav {
+    padding: 1rem; }
+  .nav-link {
+    color: white; }
+    .nav-link:focus {
+      color: white; }
+    .nav-link:hover {
+      color: #5e5e5e; }
+  .nav_titleDesktop {
+    display: none;
+    font-style: italic;
+    text-decoration: underline;
+    animation: color 2s infinite alternate linear;
+    font-size: 4rem; }
+  .nav_title {
+    text-decoration: underline;
+    font-style: italic;
+    animation: color 2s infinite alternate linear;
+    font-size: 2.5rem; }
+
+.center_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+@keyframes color {
+  from {
+    color: #5c5c5c; }
+  to {
+    color: red; } }
+
+.offcanvas-body {
+  padding-left: 0; }
+
+.dropdown-item:focus {
+  background-color: #c5c5c5;
+  color: black; }
+
+@media screen and (min-width: 576px) {
+  .logo {
+    width: 8rem;
+    height: auto;
+    justify-content: space-evenly; }
+  .nav_titleDesktop {
+    display: inline-block; }
+  .nav_title {
+    visibility: hidden; }
+  nav div.offcanvas {
+    width: 350px; } }
+
+/*Index*/
+#header img {
+  max-height: 60vh; }
+
+.novedades {
+  width: 90%; }
+
+.container_deli {
+  background-color: #e0542a;
+  border-radius: 2rem; }
+  .container_deli .card:hover {
+    border: 1px solid red; }
+
+.maxw_imgD {
+  max-width: 30rem; }
+  .maxw_imgD div {
+    display: flex;
+    justify-content: center; }
+
+.botones {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem; }
+  .botones button {
+    border: 2px solid #a50000;
+    border-radius: 5px; }
+    .botones button:hover {
+      border: 2px solid #c7c7c7; }
+
+.sucursal {
+  background-color: whitesmoke;
+  border-radius: 1rem; }
+
+.maps {
+  min-height: 300px;
+  height: 100%;
+  width: 100%; }
+
+/*Menu*/
+.row_gap {
+  row-gap: 1rem; }
+
+.cards_menu div div.card {
+  height: 25rem;
+  align-items: center; }
+  .cards_menu div div.card img {
+    height: 60%;
+    width: 100%;
+    max-width: 238px; }
+  .cards_menu div div.card div {
+    height: 40%; }
+
+.set_menu, .set_deli {
+  scroll-margin-top: 8rem;
+  padding: 2rem 0;
+  margin: 4rem auto; }
+  @media screen and (min-width: 576px) {
+    .set_menu, .set_deli {
+      scroll-margin-top: 11rem; } }
+
+/*Delivery*/
+.cards_deli div div.card {
+  height: 15rem; }
+  .cards_deli div div.card .container_text {
+    height: 60%; }
+  .cards_deli div div.card .btn_delivery {
+    border-radius: 10px;
+    padding: 10px;
+    text-decoration: none;
+    background-color: #a50000;
+    color: white; }
+    .cards_deli div div.card .btn_delivery:focus {
+      background-color: #a1a1a1;
+      color: black;
+      box-shadow: none;
+      transition: all 400ms ease; }
+
+.card-img-top {
+  max-height: 20rem; }
+
+.precio {
+  font-size: 2rem; }
+
+/*Opinion*/
+/*Se uso extend en un par de clases para hacer una modificacion en varios elementos*/
+.form_opinion {
+  background-color: #a50000;
+  border-radius: 10px; }
+  .form_opinion h2 {
+    color: white; }
+  .form_opinion label {
+    color: white; }
+  .form_opinion input:focus, .form_opinion select:focus, .form_opinion textarea:focus {
+    box-shadow: none;
+    border: 1px solid black; }
+  .form_opinion textarea:focus {
+    background-color: #e7e6e6; }
+
+.btn_opinion {
+  background-color: white;
+  border-radius: 10px; }
+
+/*footer*/
+.footer {
+  padding: 1rem 0;
+  background-color: #161616;
+  height: auto; }
+  .footer_titulo {
+    color: white;
+    font-size: 2rem; }
+  .footer_container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: auto;
+    gap: 1rem; }
+    .footer_container .link_containers:first-child {
+      display: flex;
+      align-content: center;
+      justify-content: space-around; }
+      .footer_container .link_containers:first-child div {
+        width: auto;
+        display: none; }
+        @media screen and (min-width: 300px) {
+          .footer_container .link_containers:first-child div {
+            display: block; } }
+        .footer_container .link_containers:first-child div ul {
+          list-style: none;
+          margin: 0;
+          padding: 0; }
+          .footer_container .link_containers:first-child div ul a {
+            text-decoration: none;
+            color: white; }
+            .footer_container .link_containers:first-child div ul a:hover {
+              color: #666666; }
+    @media screen and (min-width: 575px) {
+      .footer_container {
+        flex-direction: row; }
+        .footer_container .link_containers {
+          width: 50%; } }
+  .footer_redes {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #666666;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    transition: background-color 1s, color 1s, box-shadow 0.5s; }
+  .footer_img {
+    width: 4vh;
+    display: inline-block; }
+  .footer .redes {
+    display: flex;
+    flex-direction: column; }
+    .footer .redes a {
+      margin: auto; }
+  .footer_text {
+    text-align: center;
+    color: white; }
+
+#insta:hover {
+  background-color: #E1306C;
+  color: white;
+  box-shadow: 0px 0px 20px #E1306C; }
+
+#face:hover {
+  background-color: #2654af;
+  color: white;
+  box-shadow: 0px 0px 20px #2654af; }
+
+#whatsapp:hover {
+  background-color: #049125;
+  color: white;
+  box-shadow: 0px 0px 20px #049125; }
+
+.error404 {
+  background-color: white;
+  background: none; }
+
+.titulo {
+  font-size: 2.5rem; }
+  @media screen and (min-width: 760px) {
+    .titulo {
+      font-size: 3.5rem; } }
+
+.img {
+  height: 100%;
+  width: 100%; }
+
+.respuestas {
+  display: flex;
+  justify-content: center;
+  gap: 2rem; }
+  .respuestas a {
+    text-decoration: none; }

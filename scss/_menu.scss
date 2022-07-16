@@ -1,0 +1,29 @@
+/*Menu*/
+.row_gap {
+    row-gap: 1rem;
+}
+
+.cards_menu div div.card {
+    height: 25rem;
+    align-items: center;
+    img {
+        height: 60%;
+        width: 100%;
+        max-width: 238px;
+    }
+
+    div {
+        height: 40%;
+    }
+}
+
+.set_menu {
+    scroll-margin-top: 8rem;
+    padding: 2rem 0;
+    margin: 4rem auto;
+    @media screen and (min-width:576px) {
+        &{
+            scroll-margin-top: 11rem;
+        }
+    }
+}

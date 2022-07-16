@@ -1,0 +1,33 @@
+/*Opinion*/
+/*Se uso extend en un par de clases para hacer una modificacion en varios elementos*/
+.form_opinion {
+    background-color: $RojoPrincipal;
+    border-radius: 10px;
+
+    h2 {
+        color: $Blanco;
+    }
+
+    label {
+        color: $Blanco;
+    }
+
+    input:focus {
+        box-shadow: none;
+        border: 1px solid black;
+    }
+
+    select:focus {
+        @extend input:focus;
+    }
+
+    textarea:focus {
+        @extend input:focus;
+        background-color: rgb(231, 230, 230);
+    }
+}
+
+.btn_opinion {
+    background-color: $Blanco;
+    border-radius: 10px;
+}

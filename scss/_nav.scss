@@ -1,0 +1,110 @@
+/*Navbar*/
+/*Se uso un maps para modificar los colores del nav*/
+
+$navsColors:(
+    "sombra":rgb(0, 0, 0),
+    "bg":#292929,
+    "hover":rgb(94, 94, 94),
+    "1Title":rgb(92, 92, 92),
+    "2Title": rgb(255, 0, 0),
+    "dI_focus_bg":rgb(197, 197, 197),
+    "dI_focus_c":rgb(0, 0, 0),
+);
+
+nav div.offcanvas {
+    width: 200px;
+}
+
+.nav_shadow {
+    
+    box-shadow: 1px 1px 5px map-get($map:$navsColors, $key:'sombra');
+}
+
+.logo {
+    width: 5rem;
+    height: auto;
+    justify-content: space-evenly;
+}
+
+.nav {
+    background: map-get($map:$navsColors, $key:'bg');
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    .navbar-nav{
+        padding: 1rem;
+    }
+    &-link {
+        color: $Blanco;
+
+        &:focus {
+            color: $Blanco;
+        }
+
+        &:hover {
+            color: map-get($map:$navsColors, $key:'hover');
+            
+        }
+    }
+
+    &_titleDesktop {
+        display: none;
+        font-style: italic;
+        text-decoration: underline;
+        animation: color 2s infinite alternate linear;
+        font-size: 4rem;
+    }
+
+    &_title {
+        text-decoration: underline;
+        font-style: italic;
+        animation: color 2s infinite alternate linear;
+        font-size: 2.5rem;
+    }
+}
+
+
+.center_icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes color {
+    from {
+      color: map-get($map:$navsColors, $key:'1Title');
+    }
+  
+    to {
+      color: map-get($map:$navsColors, $key:'2Title');
+    }
+  }
+.offcanvas-body {
+    padding-left: 0;
+}
+
+.dropdown-item:focus {
+    background-color: map-get($map:$navsColors, $key:'dI_focus_bg');
+    color: map-get($map:$navsColors, $key:'dI_focus_c');
+}
+
+@media screen and (min-width:576px) {
+    .logo {
+        width: 8rem;
+        height: auto;
+        justify-content: space-evenly;
+    }
+
+    .nav_titleDesktop {
+        display: inline-block;
+    }
+
+    .nav_title {
+        visibility: hidden;
+    }
+
+    nav div.offcanvas {
+        width: 350px;
+    }
+
+}

@@ -18,14 +18,14 @@
     <meta name="description"
         content="Realiza tu pedido hasta la puerta de tu casa sin cargo extra. Con tan solo unos clics te llevamos la comida.">
     <meta name="author" content="Lucas Vasquez">
-    <meta name="keywords"
-        content="Pizza Party ,pizza, empanada , minuta , postre ,bebida, Delivery">
+    <meta name="keywords" content="Pizza Party ,pizza, empanada , minuta , postre ,bebida, Delivery">
 </head>
 
 <body>
     <nav class="navbar bg-light sticky-top nav_shadow">
         <div class="container-fluid">
-            <a class="navbar-brand" href="../index.html"><img src="../img/Utiles/newLogoRed.png" class="logo" alt="logo"></a>
+            <a class="navbar-brand" href="../index.html"><img src="../img/Utiles/newLogoRed.png" class="logo"
+                    alt="logo"></a>
             <h2 class="nav_titleDesktop ">Pizza Party</h2>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar">
@@ -116,24 +116,25 @@
                                             <div>
                                                 <p>Una Clásica pizza de muzzarella + una grande fugazzeta + 2 fainas de
                                                     regalo</p>
-                                                <p class="precio">1600$</p>
+                                                <p class="precio" id="precio">1600$</p>
                                                 <label>
                                                     Cantidad
-                                                    <select class="ng-pristine ng-valid ng-touched">
-                                                        <option label="1" value="number:1" selected="selected">1
+                                                    <select class="ng-pristine ng-valid ng-touched" id="prueba">
+                                                        <option value="1" selected="selected">1
                                                         </option>
-                                                        <option label="2" value="number:2">2</option>
-                                                        <option label="3" value="number:3">3</option>
-                                                        <option label="4" value="number:4">4</option>
-                                                        <option label="5" value="number:5">5</option>
-                                                        <option label="6" value="number:6">6</option>
-                                                        <option label="7" value="number:7">7</option>
-                                                        <option label="8" value="number:8">8</option>
-                                                        <option label="9" value="number:9">9</option>
-                                                        <option label="10" value="number:10">10</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
                                                     </select>
                                                 </label>
-                                                <button type="button" class="btn btn_delivery ">Agregar a
+                                                <button type="button" class="btn btn_delivery "
+                                                    onclick="agregarCompra(0)">Agregar a
                                                     carrito</button>
                                             </div>
                                         </div>
@@ -147,7 +148,7 @@
                     <div class="card">
                         <div class="card-body ">
                             <div class="container_text">
-                                <h3>Promo 3</h3>
+                                <h3>Promo 2</h3>
                                 <p class="card-text ">1 pizza de muzza + 1 pizza de jamon + 2 fainas</p>
                             </div>
                             <!-- Button trigger modal -->
@@ -174,20 +175,20 @@
                                                 <label>
                                                     Cantidad
                                                     <select class="ng-pristine ng-valid ng-touched">
-                                                        <option label="1" value="number:1" selected="selected">1
+                                                        <option value="1" selected="selected">1
                                                         </option>
-                                                        <option label="2" value="number:2">2</option>
-                                                        <option label="3" value="number:3">3</option>
-                                                        <option label="4" value="number:4">4</option>
-                                                        <option label="5" value="number:5">5</option>
-                                                        <option label="6" value="number:6">6</option>
-                                                        <option label="7" value="number:7">7</option>
-                                                        <option label="8" value="number:8">8</option>
-                                                        <option label="9" value="number:9">9</option>
-                                                        <option label="10" value="number:10">10</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
                                                     </select>
                                                 </label>
-                                                <button type="button" class="btn btn_delivery ">Agregar a
+                                                <button type="button" class="btn btn_delivery " onclick="agregarCompra(1)">Agregar a
                                                     carrito</button>
                                             </div>
                                         </div>
@@ -228,20 +229,20 @@
                                                 <label>
                                                     Cantidad
                                                     <select class="ng-pristine ng-valid ng-touched">
-                                                        <option label="1" value="number:1" selected="selected">1
+                                                        <option value="1" selected="selected">1
                                                         </option>
-                                                        <option label="2" value="number:2">2</option>
-                                                        <option label="3" value="number:3">3</option>
-                                                        <option label="4" value="number:4">4</option>
-                                                        <option label="5" value="number:5">5</option>
-                                                        <option label="6" value="number:6">6</option>
-                                                        <option label="7" value="number:7">7</option>
-                                                        <option label="8" value="number:8">8</option>
-                                                        <option label="9" value="number:9">9</option>
-                                                        <option label="10" value="number:10">10</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
                                                     </select>
                                                 </label>
-                                                <button type="button" class="btn btn_delivery ">Agregar a
+                                                <button type="button" class="btn btn_delivery " onclick="agregarCompra(2)">Agregar a
                                                     carrito</button>
                                             </div>
                                         </div>
@@ -286,20 +287,20 @@
                                                 <label>
                                                     Cantidad
                                                     <select class="ng-pristine ng-valid ng-touched">
-                                                        <option label="1" value="number:1" selected="selected">1
+                                                        <option value="1" selected="selected">1
                                                         </option>
-                                                        <option label="2" value="number:2">2</option>
-                                                        <option label="3" value="number:3">3</option>
-                                                        <option label="4" value="number:4">4</option>
-                                                        <option label="5" value="number:5">5</option>
-                                                        <option label="6" value="number:6">6</option>
-                                                        <option label="7" value="number:7">7</option>
-                                                        <option label="8" value="number:8">8</option>
-                                                        <option label="9" value="number:9">9</option>
-                                                        <option label="10" value="number:10">10</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
                                                     </select>
                                                 </label>
-                                                <button type="button" class="btn btn_delivery ">Agregar a
+                                                <button type="button" class="btn btn_delivery " onclick="agregarCompra(3)">Agregar a
                                                     carrito</button>
                                             </div>
                                         </div>
@@ -339,17 +340,17 @@
                                                 <label>
                                                     Cantidad
                                                     <select class="ng-pristine ng-valid ng-touched">
-                                                        <option label="1" value="number:1" selected="selected">1
+                                                        <option value="1" selected="selected">1
                                                         </option>
-                                                        <option label="2" value="number:2">2</option>
-                                                        <option label="3" value="number:3">3</option>
-                                                        <option label="4" value="number:4">4</option>
-                                                        <option label="5" value="number:5">5</option>
-                                                        <option label="6" value="number:6">6</option>
-                                                        <option label="7" value="number:7">7</option>
-                                                        <option label="8" value="number:8">8</option>
-                                                        <option label="9" value="number:9">9</option>
-                                                        <option label="10" value="number:10">10</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
                                                     </select>
                                                 </label>
                                                 <button type="button" class="btn btn_delivery ">Agregar a
@@ -394,17 +395,17 @@
                                                 <label>
                                                     Cantidad
                                                     <select class="ng-pristine ng-valid ng-touched">
-                                                        <option label="1" value="number:1" selected="selected">1
+                                                        <option value="1" selected="selected">1
                                                         </option>
-                                                        <option label="2" value="number:2">2</option>
-                                                        <option label="3" value="number:3">3</option>
-                                                        <option label="4" value="number:4">4</option>
-                                                        <option label="5" value="number:5">5</option>
-                                                        <option label="6" value="number:6">6</option>
-                                                        <option label="7" value="number:7">7</option>
-                                                        <option label="8" value="number:8">8</option>
-                                                        <option label="9" value="number:9">9</option>
-                                                        <option label="10" value="number:10">10</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
                                                     </select>
                                                 </label>
                                                 <button type="button" class="btn btn_delivery ">Agregar a
@@ -448,17 +449,17 @@
                                                 <label>
                                                     Cantidad
                                                     <select class="ng-pristine ng-valid ng-touched">
-                                                        <option label="1" value="number:1" selected="selected">1
+                                                        <option value="1" selected="selected">1
                                                         </option>
-                                                        <option label="2" value="number:2">2</option>
-                                                        <option label="3" value="number:3">3</option>
-                                                        <option label="4" value="number:4">4</option>
-                                                        <option label="5" value="number:5">5</option>
-                                                        <option label="6" value="number:6">6</option>
-                                                        <option label="7" value="number:7">7</option>
-                                                        <option label="8" value="number:8">8</option>
-                                                        <option label="9" value="number:9">9</option>
-                                                        <option label="10" value="number:10">10</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
                                                     </select>
                                                 </label>
                                                 <button type="button" class="btn btn_delivery ">Agregar a
@@ -502,17 +503,17 @@
                                                 <label>
                                                     Cantidad
                                                     <select class="ng-pristine ng-valid ng-touched">
-                                                        <option label="1" value="number:1" selected="selected">1
+                                                        <option value="1" selected="selected">1
                                                         </option>
-                                                        <option label="2" value="number:2">2</option>
-                                                        <option label="3" value="number:3">3</option>
-                                                        <option label="4" value="number:4">4</option>
-                                                        <option label="5" value="number:5">5</option>
-                                                        <option label="6" value="number:6">6</option>
-                                                        <option label="7" value="number:7">7</option>
-                                                        <option label="8" value="number:8">8</option>
-                                                        <option label="9" value="number:9">9</option>
-                                                        <option label="10" value="number:10">10</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
                                                     </select>
                                                 </label>
                                                 <button type="button" class="btn btn_delivery ">Agregar a
@@ -551,22 +552,23 @@
                                             <div class=""><img src="../img/Pizzas/pizza_especialidad_casa.jpg"
                                                     class="card-img-top" alt="Pizza de la casa"></div>
                                             <div>
-                                                <p>Pizza muzza con morrón,jamón, huevo, queso rallado, aceituna y orégano</p>
+                                                <p>Pizza muzza con morrón,jamón, huevo, queso rallado, aceituna y
+                                                    orégano</p>
                                                 <p class="precio">1200$</p>
                                                 <label>
                                                     Cantidad
                                                     <select class="ng-pristine ng-valid ng-touched">
-                                                        <option label="1" value="number:1" selected="selected">1
+                                                        <option value="1" selected="selected">1
                                                         </option>
-                                                        <option label="2" value="number:2">2</option>
-                                                        <option label="3" value="number:3">3</option>
-                                                        <option label="4" value="number:4">4</option>
-                                                        <option label="5" value="number:5">5</option>
-                                                        <option label="6" value="number:6">6</option>
-                                                        <option label="7" value="number:7">7</option>
-                                                        <option label="8" value="number:8">8</option>
-                                                        <option label="9" value="number:9">9</option>
-                                                        <option label="10" value="number:10">10</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
                                                     </select>
                                                 </label>
                                                 <button type="button" class="btn btn_delivery ">Agregar a
@@ -615,17 +617,17 @@
                                                 <label>
                                                     Cantidad
                                                     <select class="ng-pristine ng-valid ng-touched">
-                                                        <option label="1" value="number:1" selected="selected">1
+                                                        <option value="1" selected="selected">1
                                                         </option>
-                                                        <option label="2" value="number:2">2</option>
-                                                        <option label="3" value="number:3">3</option>
-                                                        <option label="4" value="number:4">4</option>
-                                                        <option label="5" value="number:5">5</option>
-                                                        <option label="6" value="number:6">6</option>
-                                                        <option label="7" value="number:7">7</option>
-                                                        <option label="8" value="number:8">8</option>
-                                                        <option label="9" value="number:9">9</option>
-                                                        <option label="10" value="number:10">10</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
                                                     </select>
                                                 </label>
                                                 <button type="button" class="btn btn_delivery ">Agregar a
@@ -668,17 +670,17 @@
                                                 <label>
                                                     Cantidad
                                                     <select class="ng-pristine ng-valid ng-touched">
-                                                        <option label="1" value="number:1" selected="selected">1
+                                                        <option value="1" selected="selected">1
                                                         </option>
-                                                        <option label="2" value="number:2">2</option>
-                                                        <option label="3" value="number:3">3</option>
-                                                        <option label="4" value="number:4">4</option>
-                                                        <option label="5" value="number:5">5</option>
-                                                        <option label="6" value="number:6">6</option>
-                                                        <option label="7" value="number:7">7</option>
-                                                        <option label="8" value="number:8">8</option>
-                                                        <option label="9" value="number:9">9</option>
-                                                        <option label="10" value="number:10">10</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
                                                     </select>
                                                 </label>
                                                 <button type="button" class="btn btn_delivery ">Agregar a
@@ -721,17 +723,17 @@
                                                 <label>
                                                     Cantidad
                                                     <select class="ng-pristine ng-valid ng-touched">
-                                                        <option label="1" value="number:1" selected="selected">1
+                                                        <option value="1" selected="selected">1
                                                         </option>
-                                                        <option label="2" value="number:2">2</option>
-                                                        <option label="3" value="number:3">3</option>
-                                                        <option label="4" value="number:4">4</option>
-                                                        <option label="5" value="number:5">5</option>
-                                                        <option label="6" value="number:6">6</option>
-                                                        <option label="7" value="number:7">7</option>
-                                                        <option label="8" value="number:8">8</option>
-                                                        <option label="9" value="number:9">9</option>
-                                                        <option label="10" value="number:10">10</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
                                                     </select>
                                                 </label>
                                                 <button type="button" class="btn btn_delivery ">Agregar a
@@ -780,17 +782,17 @@
                                                 <label>
                                                     Cantidad
                                                     <select class="ng-pristine ng-valid ng-touched">
-                                                        <option label="1" value="number:1" selected="selected">1
+                                                        <option value="1" selected="selected">1
                                                         </option>
-                                                        <option label="2" value="number:2">2</option>
-                                                        <option label="3" value="number:3">3</option>
-                                                        <option label="4" value="number:4">4</option>
-                                                        <option label="5" value="number:5">5</option>
-                                                        <option label="6" value="number:6">6</option>
-                                                        <option label="7" value="number:7">7</option>
-                                                        <option label="8" value="number:8">8</option>
-                                                        <option label="9" value="number:9">9</option>
-                                                        <option label="10" value="number:10">10</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
                                                     </select>
                                                 </label>
                                                 <button type="button" class="btn btn_delivery ">Agregar a
@@ -834,17 +836,17 @@
                                                 <label>
                                                     Cantidad
                                                     <select class="ng-pristine ng-valid ng-touched">
-                                                        <option label="1" value="number:1" selected="selected">1
+                                                        <option value="1" selected="selected">1
                                                         </option>
-                                                        <option label="2" value="number:2">2</option>
-                                                        <option label="3" value="number:3">3</option>
-                                                        <option label="4" value="number:4">4</option>
-                                                        <option label="5" value="number:5">5</option>
-                                                        <option label="6" value="number:6">6</option>
-                                                        <option label="7" value="number:7">7</option>
-                                                        <option label="8" value="number:8">8</option>
-                                                        <option label="9" value="number:9">9</option>
-                                                        <option label="10" value="number:10">10</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
                                                     </select>
                                                 </label>
                                                 <button type="button" class="btn btn_delivery ">Agregar a
@@ -888,17 +890,17 @@
                                                 <label>
                                                     Cantidad
                                                     <select class="ng-pristine ng-valid ng-touched">
-                                                        <option label="1" value="number:1" selected="selected">1
+                                                        <option value="1" selected="selected">1
                                                         </option>
-                                                        <option label="2" value="number:2">2</option>
-                                                        <option label="3" value="number:3">3</option>
-                                                        <option label="4" value="number:4">4</option>
-                                                        <option label="5" value="number:5">5</option>
-                                                        <option label="6" value="number:6">6</option>
-                                                        <option label="7" value="number:7">7</option>
-                                                        <option label="8" value="number:8">8</option>
-                                                        <option label="9" value="number:9">9</option>
-                                                        <option label="10" value="number:10">10</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
                                                     </select>
                                                 </label>
                                                 <button type="button" class="btn btn_delivery ">Agregar a
@@ -947,17 +949,17 @@
                                                 <label>
                                                     Cantidad
                                                     <select class="ng-pristine ng-valid ng-touched">
-                                                        <option label="1" value="number:1" selected="selected">1
+                                                        <option value="1" selected="selected">1
                                                         </option>
-                                                        <option label="2" value="number:2">2</option>
-                                                        <option label="3" value="number:3">3</option>
-                                                        <option label="4" value="number:4">4</option>
-                                                        <option label="5" value="number:5">5</option>
-                                                        <option label="6" value="number:6">6</option>
-                                                        <option label="7" value="number:7">7</option>
-                                                        <option label="8" value="number:8">8</option>
-                                                        <option label="9" value="number:9">9</option>
-                                                        <option label="10" value="number:10">10</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
                                                     </select>
                                                 </label>
                                                 <button type="button" class="btn btn_delivery ">Agregar a
@@ -1000,17 +1002,17 @@
                                                 <label>
                                                     Cantidad
                                                     <select class="ng-pristine ng-valid ng-touched">
-                                                        <option label="1" value="number:1" selected="selected">1
+                                                        <option value="1" selected="selected">1
                                                         </option>
-                                                        <option label="2" value="number:2">2</option>
-                                                        <option label="3" value="number:3">3</option>
-                                                        <option label="4" value="number:4">4</option>
-                                                        <option label="5" value="number:5">5</option>
-                                                        <option label="6" value="number:6">6</option>
-                                                        <option label="7" value="number:7">7</option>
-                                                        <option label="8" value="number:8">8</option>
-                                                        <option label="9" value="number:9">9</option>
-                                                        <option label="10" value="number:10">10</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
                                                     </select>
                                                 </label>
                                                 <button type="button" class="btn btn_delivery ">Agregar a
@@ -1079,6 +1081,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+
+    <!-- Script Carrito -->
+    <script src="../js/carrito.js"></script>
 
 </body>
 

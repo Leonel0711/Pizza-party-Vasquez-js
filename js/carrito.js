@@ -63,7 +63,7 @@ function sacar(producto, miCarrito) {
 function llenarCarrito(listaProductos, miCarrito) {
     let compra = true;
     while (compra) {
-        let opcion = prompt("Opciones 1-3 y 4 para terminar pedido\nEl menu es:\n" + listaProductos[0].nombre + ":" + listaProductos[0].precio + "\n" + listaProductos[1].nombre + ":" + listaProductos[1].precio + "\n" + listaProductos[2].nombre + ":" + listaProductos[2].precio + "\n");
+        let opcion = prompt("Opciones 1-3 y 4 para terminar pedido\nEl menu es:\n" + listaProductos[0].nombre + ":" + listaProductos[0].precio + "\n" + listaProductos[1].nombre + ":" + listaProductos[1].precio + "\n" + listaProductos[2].nombre + ":" + listaProductos[2].precio + "\n"+ showCarrito(miCarrito));
         switch (opcion) {
             case "1":
                 agregar(listaProductos[0], miCarrito)
@@ -86,7 +86,7 @@ function llenarCarrito(listaProductos, miCarrito) {
 function vaciarCarrito(miCarrito) {
     let compra = true;
     while (compra) {
-        let opcion = prompt("Opciones 1-3 y 4 para salir \n"+showCarrito(miCarrito));
+        let opcion = prompt("Opciones 1-3 y 4 para salir \n" + showCarrito(miCarrito));
         switch (opcion) {
             case "1":
                 if (miCarrito[0] != undefined) {

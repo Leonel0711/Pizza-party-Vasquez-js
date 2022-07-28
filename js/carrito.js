@@ -25,54 +25,65 @@ const carrito = function (miCarrito, producto) { miCarrito.push(producto); }
 //Suma el precio 
 const suma = (n1, n2) => n1 + n2;
 //Calcula el precio final
-function getPrecioFinal(miCarrito) {
+/* function getPrecioFinal(miCarrito) {
     let precioFinal = 0;
     for (let i = 0; i < miCarrito.length; i++) {
         precioFinal = precioFinal + (miCarrito[i].cantidad * miCarrito[i].precio)
     }
     return precioFinal;
-}
+} */
+
 //Muestra la cuenta en un alert
 function showCarrito(miCarrito) {
     let string = "Su pedido es:\n";
+    const precioFinal = miCarrito.reduce((acumulador, producto) => acumulador += (producto.precio * producto.cantidad), 0);
     for (let i = 0; i < miCarrito.length; i++) {
         string = string + miCarrito[i].cantidad + " " + miCarrito[i].nombre + ".......$" + (miCarrito[i].precio * miCarrito[i].cantidad) + "\n";
     }
-    string = string + "El valor final es : $" + getPrecioFinal(miCarrito);
+    string = string + "El valor final es : $" + precioFinal;
     return string;
 }
 //Agrega una cantidad al producto y si es 0 llama a la funcion para ponerlo en el carrito
-function agregar(producto, miCarrito) {
+function agregar(producto, miCarrito, cantidad) {
     if (producto.cantidad == 0) {
-        producto.cantidad++;
         carrito(miCarrito, producto);
-    } else {
-        producto.cantidad++;
     }
+    producto.cantidad += cantidad;
 }
 //Restar la cantidad de productos y si es igual a 0 sacar al producto
-function sacar(producto, miCarrito) {
-    if (producto.cantidad == 1) {
+function sacar(producto, miCarrito, cantidad) {
+
+    if (producto.cantidad >= cantidad) {
+        producto.cantidad -= cantidad;
+        if (producto.cantidad == 0) {
+            miCarrito.splice(miCarrito.indexOf(producto), 1);
+        }
+    }
+    /* if (producto.cantidad == 1) {
         producto.cantidad--;
         miCarrito.splice(miCarrito.indexOf(producto), 1);
     } else if (producto.cantidad > 1) {
         producto.cantidad--;
-    } else { }
+    } else { } */
 }
 //Ingresar los distintos productos
 function llenarCarrito(listaProductos, miCarrito) {
     let compra = true;
     while (compra) {
-        let opcion = prompt("Opciones 1-3 y 4 para terminar pedido\nEl menu es:\n" + listaProductos[0].nombre + ":" + listaProductos[0].precio + "\n" + listaProductos[1].nombre + ":" + listaProductos[1].precio + "\n" + listaProductos[2].nombre + ":" + listaProductos[2].precio + "\n"+ showCarrito(miCarrito));
+        let opcion = prompt("Opciones 1-3 y 4 para terminar pedido\nEl menu es:\n" + listaProductos[0].nombre + ":" + listaProductos[0].precio + "\n" + listaProductos[1].nombre + ":" + listaProductos[1].precio + "\n" + listaProductos[2].nombre + ":" + listaProductos[2].precio + "\n" + showCarrito(miCarrito));
+        let canti;
         switch (opcion) {
             case "1":
-                agregar(listaProductos[0], miCarrito)
+                canti = parseInt(prompt("Ingrese La cantidad del producto a agregar"));
+                agregar(listaProductos[0], miCarrito, canti);
                 break;
             case "2":
-                agregar(listaProductos[1], miCarrito)
+                canti = parseInt(prompt("Ingrese La cantidad del producto a agregar"));
+                agregar(listaProductos[1], miCarrito, canti);
                 break;
             case "3":
-                agregar(listaProductos[2], miCarrito)
+                canti = parseInt(prompt("Ingrese La cantidad del producto a agregar"));
+                agregar(listaProductos[2], miCarrito, canti);
                 break;
             case "4":
                 compra = false;
@@ -87,21 +98,24 @@ function vaciarCarrito(miCarrito) {
     let compra = true;
     while (compra) {
         let opcion = prompt("Opciones 1-3 y 4 para salir \n" + showCarrito(miCarrito));
+        let canti;
         switch (opcion) {
             case "1":
+                canti = parseInt(prompt("Ingrese La cantidad del producto a sacar"));
                 if (miCarrito[0] != undefined) {
-                    sacar(miCarrito[0], miCarrito);
+                    sacar(miCarrito[0], miCarrito, canti);
                 }
-
                 break;
             case "2":
+                canti = parseInt(prompt("Ingrese La cantidad del producto a sacar"));
                 if (miCarrito[1] != undefined) {
-                    sacar(miCarrito[1], miCarrito);
+                    sacar(miCarrito[1], miCarrito, canti);
                 }
                 break;
             case "3":
+                canti = parseInt(prompt("Ingrese La cantidad del producto a sacar"));
                 if (miCarrito[2] != undefined) {
-                    sacar(miCarrito[2], miCarrito);
+                    sacar(miCarrito[2], miCarrito, canti);
                 }
                 break;
             case "4":

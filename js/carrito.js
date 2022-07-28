@@ -67,23 +67,30 @@ function sacar(producto, miCarrito, cantidad) {
     } else { } */
 }
 //Ingresar los distintos productos
+function valiCanti() {
+    let canti;
+    while (true) {
+        canti = parseInt(prompt("Ingrese La cantidad del producto a agregar"));
+        if (isNaN(canti) || canti<=0) {
+            alert('ingrese un número válido.');
+        } else { 
+            return canti;
+        }
+    }
+}
 function llenarCarrito(listaProductos, miCarrito) {
     let compra = true;
     while (compra) {
         let opcion = prompt("Opciones 1-3 y 4 para terminar pedido\nEl menu es:\n" + listaProductos[0].nombre + ":" + listaProductos[0].precio + "\n" + listaProductos[1].nombre + ":" + listaProductos[1].precio + "\n" + listaProductos[2].nombre + ":" + listaProductos[2].precio + "\n" + showCarrito(miCarrito));
-        let canti;
         switch (opcion) {
             case "1":
-                canti = parseInt(prompt("Ingrese La cantidad del producto a agregar"));
-                agregar(listaProductos[0], miCarrito, canti);
+                agregar(listaProductos[0], miCarrito, valiCanti());
                 break;
             case "2":
-                canti = parseInt(prompt("Ingrese La cantidad del producto a agregar"));
-                agregar(listaProductos[1], miCarrito, canti);
+                agregar(listaProductos[1], miCarrito, valiCanti());
                 break;
             case "3":
-                canti = parseInt(prompt("Ingrese La cantidad del producto a agregar"));
-                agregar(listaProductos[2], miCarrito, canti);
+                agregar(listaProductos[2], miCarrito, valiCanti());
                 break;
             case "4":
                 compra = false;
@@ -98,24 +105,20 @@ function vaciarCarrito(miCarrito) {
     let compra = true;
     while (compra) {
         let opcion = prompt("Opciones 1-3 y 4 para salir \n" + showCarrito(miCarrito));
-        let canti;
         switch (opcion) {
             case "1":
-                canti = parseInt(prompt("Ingrese La cantidad del producto a sacar"));
                 if (miCarrito[0] != undefined) {
-                    sacar(miCarrito[0], miCarrito, canti);
+                    sacar(miCarrito[0], miCarrito, valiCanti());
                 }
                 break;
             case "2":
-                canti = parseInt(prompt("Ingrese La cantidad del producto a sacar"));
                 if (miCarrito[1] != undefined) {
-                    sacar(miCarrito[1], miCarrito, canti);
+                    sacar(miCarrito[1], miCarrito, valiCanti());
                 }
                 break;
             case "3":
-                canti = parseInt(prompt("Ingrese La cantidad del producto a sacar"));
                 if (miCarrito[2] != undefined) {
-                    sacar(miCarrito[2], miCarrito, canti);
+                    sacar(miCarrito[2], miCarrito, valiCanti());
                 }
                 break;
             case "4":

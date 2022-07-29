@@ -67,6 +67,11 @@ nav div.offcanvas {
   background-color: #c5c5c5;
   color: black; }
 
+.nav_buttons {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center; }
+
 @media screen and (min-width: 576px) {
   .logo {
     width: 8rem;
@@ -77,7 +82,11 @@ nav div.offcanvas {
   .nav_title {
     visibility: hidden; }
   nav div.offcanvas {
-    width: 350px; } }
+    width: 350px; }
+  .nav_buttons {
+    display: flex;
+    gap: 1.3rem;
+    align-items: center; } }
 
 /*Index*/
 #header img {

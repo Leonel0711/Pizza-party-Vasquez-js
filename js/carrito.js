@@ -2,7 +2,7 @@
 class Productos {
     constructor(nombre, precio, categoria) {
         this.nombre = nombre.toUpperCase();
-        this.precio = parseFloat(precio);
+        this.precio = parseInt(precio);
         this.categoria = categoria.toUpperCase();
         this.cantidad = 0;
         this.stock = true;
@@ -11,6 +11,56 @@ class Productos {
         this.stock = false;
     }
 }
+const combos = [
+    new Productos("Combo 1", 1600, "combo"),
+    new Productos("Combo 2", 1600, "combo"),
+    new Productos("Combo 3", 1600, "combo"),
+];
+const pizza = [
+    new Productos("Pizza Muzzarella", 900, "pizza"),
+    new Productos("Pizza de Jamon y Queso", 900, "pizza"),
+    new Productos("Pizza Napolitana", 900, "pizza"),
+    new Productos("Pizza Fugazzeta", 900, "pizza"),
+];
+
+let etiquetas = "";
+const miCarrito = [];
+//
+const addCarrito = (producto) => { miCarrito.push(producto) };
+function carrito(producto, numSelec) {
+    changeCanti(producto, numSelec)
+    console.log(miCarrito);
+    showCarrito();
+}
+//Modifica la cantidad del objeto
+function changeCanti(producto, numSelec) {
+    if (producto.cantidad == 0) {
+        addCarrito(producto);
+        console.log(producto.cantidad);
+        producto.cantidad = select(numSelec);
+    } else {
+        producto.cantidad += select(numSelec);
+    }
+}
+
+function showCarrito() {
+    let string = "";
+    const precioFinal = miCarrito.reduce((acumulador, producto) => acumulador += (producto.precio * producto.cantidad), 0);
+    for (let i = 0; i < miCarrito.length; i++) {
+        string += `<div><p>${miCarrito[i].cantidad} ${miCarrito[i].nombre}......$${miCarrito[i].cantidad*miCarrito[i].precio}</p></div>`;
+    }
+    let showMiCarrito = document.getElementById("carrito");
+    
+    string += "Su Precio Final es: $"+precioFinal;
+    showMiCarrito.innerHTML=string;
+}
+
+function select(numSelec) {
+    let selection = document.getElementsByTagName("select");
+    return parseInt(selection[numSelec].options[selection[numSelec].selectedIndex].value);
+}
+
+/* 
 //Crea los productos
 function getProductos(listaProductos) {
     let pizzaNapo = new Productos("Pizza Napolitana", 1080, "Pizza");
@@ -24,14 +74,6 @@ function getProductos(listaProductos) {
 const carrito = function (miCarrito, producto) { miCarrito.push(producto); }
 //Suma el precio 
 const suma = (n1, n2) => n1 + n2;
-//Calcula el precio final
-/* function getPrecioFinal(miCarrito) {
-    let precioFinal = 0;
-    for (let i = 0; i < miCarrito.length; i++) {
-        precioFinal = precioFinal + (miCarrito[i].cantidad * miCarrito[i].precio)
-    }
-    return precioFinal;
-} */
 
 //Muestra la cuenta en un alert
 function showCarrito(miCarrito) {
@@ -52,19 +94,12 @@ function agregar(producto, miCarrito, cantidad) {
 }
 //Restar la cantidad de productos y si es igual a 0 sacar al producto
 function sacar(producto, miCarrito, cantidad) {
-
     if (producto.cantidad >= cantidad) {
         producto.cantidad -= cantidad;
         if (producto.cantidad == 0) {
             miCarrito.splice(miCarrito.indexOf(producto), 1);
         }
     }
-    /* if (producto.cantidad == 1) {
-        producto.cantidad--;
-        miCarrito.splice(miCarrito.indexOf(producto), 1);
-    } else if (producto.cantidad > 1) {
-        producto.cantidad--;
-    } else { } */
 }
 //Ingresar los distintos productos
 function valiCanti() {
@@ -78,6 +113,7 @@ function valiCanti() {
         }
     }
 }
+//Ingresar la opcion de los productos a agregar
 function llenarCarrito(listaProductos, miCarrito) {
     let compra = true;
     while (compra) {
@@ -154,4 +190,4 @@ function home() {
         }
     }
 }
-home();
+home(); */

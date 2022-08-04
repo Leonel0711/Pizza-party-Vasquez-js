@@ -1,9 +1,11 @@
 //Clase constructora de productos
 class Productos {
-    constructor(nombre, precio, categoria) {
+    constructor(nombre, precio, categoria, descripcion, linkImg) {
         this.nombre = nombre.toUpperCase();
         this.precio = parseInt(precio);
+        this.descripcion = descripcion.toUpperCase();
         this.categoria = categoria.toUpperCase();
+        this.linkImg = linkImg;
         this.cantidad = 0;
         this.stock = true;
     }
@@ -12,18 +14,71 @@ class Productos {
     }
 }
 const combos = [
-    new Productos("Combo 1", 1600, "combo"),
-    new Productos("Combo 2", 1600, "combo"),
-    new Productos("Combo 3", 1600, "combo"),
+    new Productos("Combo 1 pizza", 1600, "combo", "Una Clásica pizza de muzzarella + una grandefugazzeta + 2 fainas de regalo", "../img/promoDeli/Promo1.png"),
+    new Productos("Combo 2 pizza", 1600, "combo", "Una Clásica pizza de muzzarella + una grande de jamon + 2 fainas de regalo", "../img/promoDeli/Promo2.png"),
+    new Productos("Combo 3 pizza", 1600, "combo", "Una Clásica pizza de muzzarella + una grande napolitana + 2 fainas de regalo", "../img/promoDeli/Promo3.png"),
 ];
 const pizza = [
-    new Productos("Pizza Muzzarella", 900, "pizza"),
-    new Productos("Pizza de Jamon y Queso", 900, "pizza"),
-    new Productos("Pizza Napolitana", 900, "pizza"),
-    new Productos("Pizza Fugazzeta", 900, "pizza"),
+    new Productos("Pizza Muzzarella", 900, "pizza", "Una Clásica pizza muzzarella con aceituna y orégano", "../img/Pizzas/pizza_muzzarela.jpg"),
+    new Productos("Pizza de Jamon y Queso", 960, "pizza", "Pizza de jamon y muzzarella con aceituna y orégano", "../img/Pizzas/pizza_jamon.jpg"),
+    new Productos("Pizza Napolitana", 1050, "pizza", "Pizza muzzarella con perejil , ajo , rodaja de tomate , aceituna y orégano", "../img/Pizzas/pizza_napo.jpg"),
+    new Productos("Pizza Fugazzeta", 1000, "pizza", "Pizza muzzarella con cebolla ,aceituna y orégano", "../img/Pizzas/pizza_fugazzeta.jpg"),
 ];
+const empanada=[
+    new Productos("Empanada de Carne",180,"empanada","Clásica empanada de carne molida, huevo, arvejas, morrón","../img/promoDeli/Promo1.png"),
+    new Productos("Empanada de Jamon y Queso",180,"empanada","Clásica empanada de jamón y muzzarella derretida al horno","../img/Empanadas/empanadas_jyq.jpg")
 
-let etiquetas = "";
+]
+function crearhtml() {
+    crearSection("Combos","promos",combos);
+    crearSection("Pizzas","pizza",pizza);
+    crearSection("Empanadas","empanada",empanada);
+
+}
+function crearSection(subTitle,id,listaProductos) {
+    let main = document.getElementById("main");
+    let section = document.createElement('section')
+    let h2 = document.createElement('h2');
+    let divRow = document.createElement('div');
+    h2.className="text-center my-3"
+    h2.innerText=subTitle;
+    section.className = "container-xl set_deli";
+    divRow.className = "row row_gap";
+    main.append(section);
+    section.id=id;
+    section.append(h2);
+    section.append(divRow);
+    divRow.innerHTML = crearProductos(listaProductos);
+}
+function crearProductos(listaProductos) {
+    let string = "";
+    for (let i = 0; i < listaProductos.length; i++) {
+        string += `<div class="col-md-6 col-xxl-4">
+        <div class="producto " data-bs-toggle="modal" data-bs-target="#modal">
+            <div>
+                <img src="${listaProductos[i].linkImg}" alt="${listaProductos[i].nombre}">
+            </div>
+            <div>
+                <h3>${listaProductos[i].nombre}</h3>
+                <p class="descrip">${listaProductos[i].descripcion}</p>
+                <p>${listaProductos[i].precio}$</p>
+            </div>
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                    viewBox="0 0 24 24">
+                    <path fill="#6a696e"
+                        d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z">
+                    </path>
+                </svg>
+            </div>
+        </div>
+    </div>`;
+    }
+    return string;
+}
+crearhtml();
+
+/* let etiquetas = "";
 const miCarrito = [];
 //
 const addCarrito = (producto) => { miCarrito.push(producto) };
@@ -58,7 +113,7 @@ function showCarrito() {
 function select(numSelec) {
     let selection = document.getElementsByTagName("select");
     return parseInt(selection[numSelec].options[selection[numSelec].selectedIndex].value);
-}
+} */
 
 /* 
 //Crea los productos

@@ -13,27 +13,34 @@ class Productos {
         this.stock = false;
     }
 }
+//Array combos
 const combos = [
     new Productos("Combo 1 pizza", 1600, "combo", "Una Clásica pizza de muzzarella + una grandefugazzeta + 2 fainas de regalo", "../img/promoDeli/Promo1.png"),
     new Productos("Combo 2 pizza", 1600, "combo", "Una Clásica pizza de muzzarella + una grande de jamon + 2 fainas de regalo", "../img/promoDeli/Promo2.png"),
     new Productos("Combo 3 pizza", 1600, "combo", "Una Clásica pizza de muzzarella + una grande napolitana + 2 fainas de regalo", "../img/promoDeli/Promo3.png"),
 ];
+//array Pizza
 const pizza = [
     new Productos("Pizza Muzzarella", 900, "pizza", "Una Clásica pizza muzzarella con aceituna y orégano", "../img/Pizzas/pizza_muzzarela.jpg"),
     new Productos("Pizza de Jamon y Queso", 960, "pizza", "Pizza de jamon y muzzarella con aceituna y orégano", "../img/Pizzas/pizza_jamon.jpg"),
     new Productos("Pizza Napolitana", 1050, "pizza", "Pizza muzzarella con perejil , ajo , rodaja de tomate , aceituna y orégano", "../img/Pizzas/pizza_napo.jpg"),
     new Productos("Pizza Fugazzeta", 1000, "pizza", "Pizza muzzarella con cebolla ,aceituna y orégano", "../img/Pizzas/pizza_fugazzeta.jpg"),
 ];
+//Array Empanadas
 const empanada = [
     new Productos("Empanada de Carne", 180, "empanada", "Clásica empanada de carne molida, huevo, arvejas, morrón", "../img/Empanadas/empanadas_carne.jpg"),
     new Productos("Empanada de Jamon y Queso", 180, "empanada", "Clásica empanada de jamón y muzzarella derretida al horno", "../img/Empanadas/empanadas_jyq.jpg"),
     new Productos("Empanada de Choclo", 190, "empanada", "Empanadas de choclo molido con morrón y especias al horno", "../img/Empanadas/empanadas_humita.png")
 ]
-
+//Crear las section 
 function crearhtml() {
     crearSection("Combos", "promos", combos);
     crearSection("Pizzas", "pizza", pizza);
     crearSection("Empanadas", "empanada", empanada);
+    recibirLlamadoModal();
+}
+//Escucha si hacen click sobre las cards para modificar el modal
+function recibirLlamadoModal(){
     let cardsProductos = document.querySelectorAll(".producto");
     cardsProductos.forEach(item => {
         item.addEventListener('click', () => {
@@ -53,8 +60,8 @@ function crearhtml() {
         })
     })
 }
+//Modifica al modal con los atributos del producto
 function editModal(producto) {
-    let modal = document.getElementById("modalWork");
     let editModal = document.getElementsByClassName("editModal");
     let canti = document.getElementById("cont_Numb");
     editModal[0].innerText=producto.nombre;
@@ -63,49 +70,6 @@ function editModal(producto) {
     editModal[2].innerText=producto.descripcion;
     editModal[3].innerText=producto.precio+"$";
     canti.innerText=1;
-   /*  modal.innerHTML = "";
-    modal.innerHTML = `<div class="modal-header">
-    <h3 class="modal-title">${producto.nombre}</h3>
-    <button type="button" class="btn-close" data-bs-dismiss="modal"
-        aria-label="Close"></button>
-</div>
-<div class="modal-body row row_gap">
-    <div class=""><img src="${producto.linkImg}" class="card-img-top"
-            alt="${producto.nombre}"></div>
-    <div class="text-center">
-        <p>${producto.descripcion}</p>
-        <p class="precio">${producto.precio}$</p>
-        <label class = "cantidad">
-            cantidad
-            </label>
-            <div class="d-flex modalGroup  ">
-                <div class="modalButton" id="l_button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                        viewBox="0 0 24 24" data-testid="remove">
-                        <path fill="#6A696E"
-                            d="M18 13H6c-.55 0-1-.45-1-1s.45-1 1-1h12c.55 0 1 .45 1 1s-.45 1-1 1z">
-                        </path>
-                    </svg>
-                </div>
-                <div class="number">
-                    <span color="graya100" data-testid="typography"
-                        id="cont_Numb" value="1">1</span>
-                </div>
-                <div class="modalButton" id="r_button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                        viewBox="0 0 24 24" data-testid="add">
-                        <path fill="#6a696e"
-                            d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z">
-                        </path>
-                    </svg>
-                </div>
-            </div>
-            <p id="advertencia"></p>
-        <button type="button" class="btn btn_delivery ">Agregar a
-            carrito</button>
-    </div>
-</div> ` */
-
     let rbutton = document.getElementById("r_button");
     let lbutton = document.getElementById("l_button");
     let adv = document.getElementById("advertencia");
@@ -122,6 +86,7 @@ function editModal(producto) {
 
     }
 }
+//Crea una section
 function crearSection(subTitle, id, listaProductos) {
     let main = document.getElementById("main");
     let section = document.createElement('section');
@@ -137,6 +102,7 @@ function crearSection(subTitle, id, listaProductos) {
     section.append(divRow);
     divRow.innerHTML = crearProductos(listaProductos);
 }
+//crea las cards de los productos
 function crearProductos(listaProductos) {
     let string = "";
     for (let i = 0; i < listaProductos.length; i++) {

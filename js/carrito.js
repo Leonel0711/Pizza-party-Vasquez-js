@@ -4,7 +4,7 @@ class Productos {
         this.nombre = nombre.toUpperCase();
         this.precio = parseInt(precio);
         this.descripcion = descripcion.toUpperCase();
-        this.categoria = categoria.toUpperCase();
+        this.categoria = categoria.toLowerCase();
         this.linkImg = linkImg;
         this.cantidad = 0;
         this.stock = true;
@@ -24,28 +24,115 @@ const pizza = [
     new Productos("Pizza Napolitana", 1050, "pizza", "Pizza muzzarella con perejil , ajo , rodaja de tomate , aceituna y orégano", "../img/Pizzas/pizza_napo.jpg"),
     new Productos("Pizza Fugazzeta", 1000, "pizza", "Pizza muzzarella con cebolla ,aceituna y orégano", "../img/Pizzas/pizza_fugazzeta.jpg"),
 ];
-const empanada=[
-    new Productos("Empanada de Carne",180,"empanada","Clásica empanada de carne molida, huevo, arvejas, morrón","../img/promoDeli/Promo1.png"),
-    new Productos("Empanada de Jamon y Queso",180,"empanada","Clásica empanada de jamón y muzzarella derretida al horno","../img/Empanadas/empanadas_jyq.jpg")
-
+const empanada = [
+    new Productos("Empanada de Carne", 180, "empanada", "Clásica empanada de carne molida, huevo, arvejas, morrón", "../img/Empanadas/empanadas_carne.jpg"),
+    new Productos("Empanada de Jamon y Queso", 180, "empanada", "Clásica empanada de jamón y muzzarella derretida al horno", "../img/Empanadas/empanadas_jyq.jpg"),
+    new Productos("Empanada de Choclo", 190, "empanada", "Empanadas de choclo molido con morrón y especias al horno", "../img/Empanadas/empanadas_humita.png")
 ]
-function crearhtml() {
-    crearSection("Combos","promos",combos);
-    crearSection("Pizzas","pizza",pizza);
-    crearSection("Empanadas","empanada",empanada);
 
+function crearhtml() {
+    crearSection("Combos", "promos", combos);
+    crearSection("Pizzas", "pizza", pizza);
+    crearSection("Empanadas", "empanada", empanada);
+    let cardsProductos = document.querySelectorAll(".producto");
+    cardsProductos.forEach(item => {
+        item.addEventListener('click', () => {
+            let clasesCardProducto = item.className.split(" ");
+            switch (clasesCardProducto[1]) {
+                case "combo":
+                    editModal(combos[parseInt(clasesCardProducto[2])]);
+                    break;
+                case "pizza":
+                    editModal(pizza[parseInt(clasesCardProducto[2])]);
+                    break;
+                case "empanada":
+                    editModal(empanada[parseInt(clasesCardProducto[2])]);
+                    break;
+                default:
+            }
+        })
+    })
 }
-function crearSection(subTitle,id,listaProductos) {
+function editModal(producto) {
+    let modal = document.getElementById("modalWork");
+    let editModal = document.getElementsByClassName("editModal");
+    let canti = document.getElementById("cont_Numb");
+    editModal[0].innerText=producto.nombre;
+    editModal[1].src = producto.linkImg;
+    editModal[1].alt=producto.nombre;
+    editModal[2].innerText=producto.descripcion;
+    editModal[3].innerText=producto.precio+"$";
+    canti.innerText=1;
+   /*  modal.innerHTML = "";
+    modal.innerHTML = `<div class="modal-header">
+    <h3 class="modal-title">${producto.nombre}</h3>
+    <button type="button" class="btn-close" data-bs-dismiss="modal"
+        aria-label="Close"></button>
+</div>
+<div class="modal-body row row_gap">
+    <div class=""><img src="${producto.linkImg}" class="card-img-top"
+            alt="${producto.nombre}"></div>
+    <div class="text-center">
+        <p>${producto.descripcion}</p>
+        <p class="precio">${producto.precio}$</p>
+        <label class = "cantidad">
+            cantidad
+            </label>
+            <div class="d-flex modalGroup  ">
+                <div class="modalButton" id="l_button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                        viewBox="0 0 24 24" data-testid="remove">
+                        <path fill="#6A696E"
+                            d="M18 13H6c-.55 0-1-.45-1-1s.45-1 1-1h12c.55 0 1 .45 1 1s-.45 1-1 1z">
+                        </path>
+                    </svg>
+                </div>
+                <div class="number">
+                    <span color="graya100" data-testid="typography"
+                        id="cont_Numb" value="1">1</span>
+                </div>
+                <div class="modalButton" id="r_button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                        viewBox="0 0 24 24" data-testid="add">
+                        <path fill="#6a696e"
+                            d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+            <p id="advertencia"></p>
+        <button type="button" class="btn btn_delivery ">Agregar a
+            carrito</button>
+    </div>
+</div> ` */
+
+    let rbutton = document.getElementById("r_button");
+    let lbutton = document.getElementById("l_button");
+    let adv = document.getElementById("advertencia");
+    rbutton.onclick = () => {
+        canti.innerHTML = `${parseInt(canti.textContent) + 1}`;
+        adv.innerHTML= ``
+    }
+    lbutton.onclick = () => {
+        if (parseInt(canti.textContent) > 1) {
+            canti.innerHTML = `${parseInt(canti.textContent) - 1}`
+        }else{
+            adv.innerHTML= `No se puede ingresar menos productos`
+        }
+
+    }
+}
+function crearSection(subTitle, id, listaProductos) {
     let main = document.getElementById("main");
-    let section = document.createElement('section')
-    let h2 = document.createElement('h2');
-    let divRow = document.createElement('div');
-    h2.className="text-center my-3"
-    h2.innerText=subTitle;
+    let section = document.createElement('section');
     section.className = "container-xl set_deli";
+    let h2 = document.createElement('h2');
+    h2.className = "text-center my-3"
+    h2.innerText = subTitle;
+    let divRow = document.createElement('div');
     divRow.className = "row row_gap";
     main.append(section);
-    section.id=id;
+    section.id = id;
     section.append(h2);
     section.append(divRow);
     divRow.innerHTML = crearProductos(listaProductos);
@@ -54,7 +141,7 @@ function crearProductos(listaProductos) {
     let string = "";
     for (let i = 0; i < listaProductos.length; i++) {
         string += `<div class="col-md-6 col-xxl-4">
-        <div class="producto " data-bs-toggle="modal" data-bs-target="#modal">
+        <div class="producto ${listaProductos[i].categoria} ${i}" data-bs-toggle="modal" data-bs-target="#modal" value="rosa">
             <div>
                 <img src="${listaProductos[i].linkImg}" alt="${listaProductos[i].nombre}">
             </div>
@@ -66,7 +153,7 @@ function crearProductos(listaProductos) {
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                     viewBox="0 0 24 24">
-                    <path fill="#6a696e"
+                    <path fill="#FFFFFF"
                         d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z">
                     </path>
                 </svg>

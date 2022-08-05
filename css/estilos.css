@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 /*Body*/
 * {
-  font-family: 'Bebas Neue', cursive; }
+  font-family: 'Bebas Neue', cursive;
+  user-select: none; }
 
 body {
   background: url("../img/fondo/fondo4.jpg"); }
@@ -167,7 +168,7 @@ nav div.offcanvas {
     border-radius: 1rem; }
     .set_deli .producto div img {
       width: 100%;
-      height: 102px;
+      height: 100%;
       border-radius: 0.5rem; }
     .set_deli .producto div:nth-child(2) {
       display: flex;
@@ -182,7 +183,7 @@ nav div.offcanvas {
         margin: 0; }
     .set_deli .producto div svg {
       display: flex;
-      background-color: #00dd00;
+      background-color: #009700;
       color: #f8faf5;
       height: 30px;
       width: 30px;
@@ -191,6 +192,30 @@ nav div.offcanvas {
       font-size: 2.5rem;
       justify-content: center;
       align-items: center; }
+
+.modalGroup {
+  width: 90px;
+  border: 2px grey solid;
+  border-radius: 5px;
+  padding: 0;
+  margin: auto; }
+  .modalGroup .modalButton {
+    text-align: left;
+    vertical-align: top;
+    border-collapse: collapse;
+    background-color: white;
+    height: 25px;
+    width: 30px; }
+  .modalGroup .number {
+    user-select: none;
+    width: 30px; }
+  .modalGroup #r_button {
+    border-left: 2px grey solid; }
+  .modalGroup #l_button {
+    border-right: 2px grey solid; }
+
+#advertencia {
+  color: red; }
 
 /*Opinion*/
 /*Se uso extend en un par de clases para hacer una modificacion en varios elementos*/

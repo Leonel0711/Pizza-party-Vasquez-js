@@ -15,7 +15,8 @@ body {
 /*Navbar*/
 /*Se uso un maps para modificar los colores del nav*/
 nav div.offcanvas {
-  width: 200px; }
+  width: 100%;
+  max-width: 425px; }
 
 .nav_shadow {
   box-shadow: 1px 1px 5px black; }
@@ -70,7 +71,7 @@ nav div.offcanvas {
 
 .nav_buttons {
   display: flex;
-  gap: 2.5rem;
+  gap: 1rem;
   align-items: center; }
 
 @media screen and (min-width: 576px) {
@@ -82,17 +83,12 @@ nav div.offcanvas {
     display: inline-block; }
   .nav_title {
     visibility: hidden; }
-  nav div.offcanvas {
-    width: 350px; }
   .nav_buttons {
     display: flex;
-    gap: 1.3rem;
+    gap: 1rem;
     align-items: center; } }
 
 /*Index*/
-#header img {
-  max-height: 60vh; }
-
 .novedades {
   width: 90%; }
 
@@ -165,7 +161,7 @@ nav div.offcanvas {
     gap: 5px;
     box-shadow: 1px 1px 3px black;
     padding: 5px;
-    border-radius: 1rem; }
+    border-radius: 0.5rem; }
     .set_deli .producto div img {
       width: 100%;
       height: 100%;
@@ -193,29 +189,94 @@ nav div.offcanvas {
       justify-content: center;
       align-items: center; }
 
+#navBarCarrito {
+  border: none; }
+  #navBarCarrito .offcanvas-body {
+    padding: 10px 0px;
+    overflow: visible; }
+  #navBarCarrito .nav_title {
+    color: white;
+    animation: none;
+    font-style: normal;
+    text-decoration: none;
+    visibility: visible; }
+  #navBarCarrito #carrito {
+    width: 100%;
+    height: 70vh;
+    overflow-y: auto;
+    background-color: white;
+    padding: 0;
+    margin: 0; }
+    #navBarCarrito #carrito .prodCarrito {
+      display: grid;
+      grid-template-columns: 20% 1fr auto;
+      padding: 5px;
+      border-bottom: 2px solid #e0e0e0; }
+      #navBarCarrito #carrito .prodCarrito div {
+        display: flex;
+        padding: 2px; }
+        #navBarCarrito #carrito .prodCarrito div .descripCar {
+          display: none; }
+          @media screen and (min-width: 425px) {
+            #navBarCarrito #carrito .prodCarrito div .descripCar {
+              display: block; } }
+        #navBarCarrito #carrito .prodCarrito div:first-child {
+          align-items: center; }
+          #navBarCarrito #carrito .prodCarrito div:first-child .imgProdCar {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            max-height: 81px; }
+        #navBarCarrito #carrito .prodCarrito div:nth-child(2) {
+          flex-direction: column; }
+          #navBarCarrito #carrito .prodCarrito div:nth-child(2) p,
+          #navBarCarrito #carrito .prodCarrito div:nth-child(2) h3 {
+            margin: 0; }
+        #navBarCarrito #carrito .prodCarrito div:last-child {
+          align-items: center; }
+          #navBarCarrito #carrito .prodCarrito div:last-child .modalButton {
+            width: 1fr;
+            cursor: pointer; }
+            #navBarCarrito #carrito .prodCarrito div:last-child .modalButton:active {
+              transform: scale(0.8); }
+          #navBarCarrito #carrito .prodCarrito div:last-child .number {
+            display: flex;
+            width: 1fr;
+            justify-content: center; }
+    #navBarCarrito #carrito #msgSinP {
+      padding: 5px;
+      border-bottom: 2px solid #e0e0e0; }
+  #navBarCarrito .pFinal {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    border-bottom: 2px solid #e0e0e0; }
+
 .modalGroup {
   width: 90px;
   border: 2px grey solid;
   border-radius: 5px;
   padding: 0;
   margin: auto; }
+  .modalGroup .number {
+    width: 30px;
+    border-right: 2px grey solid;
+    border-left: 2px grey solid; }
   .modalGroup .modalButton {
     text-align: left;
     vertical-align: top;
     border-collapse: collapse;
     background-color: white;
     height: 25px;
-    width: 30px; }
-  .modalGroup .number {
-    user-select: none;
-    width: 30px; }
-  .modalGroup #r_button {
-    border-left: 2px grey solid; }
-  .modalGroup #l_button {
-    border-right: 2px grey solid; }
+    width: 30px;
+    border-radius: 5px;
+    cursor: pointer; }
+    .modalGroup .modalButton:active {
+      transform: scale(0.8); }
 
 #advertencia {
-  color: red; }
+  color: #ad0000; }
 
 /*Opinion*/
 /*Se uso extend en un par de clases para hacer una modificacion en varios elementos*/

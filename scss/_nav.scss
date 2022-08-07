@@ -12,7 +12,8 @@ $navsColors: (
 );
 
 nav div.offcanvas {
-    width: 200px;
+    width: 100%;
+    max-width: 425px;
 }
 
 .nav_shadow {
@@ -91,7 +92,7 @@ nav div.offcanvas {
 }
 .nav_buttons{
     display: flex;
-    gap: 2.5rem;
+    gap: 1rem;
     align-items: center;
 }
 
@@ -110,12 +111,10 @@ nav div.offcanvas {
         visibility: hidden;
     }
 
-    nav div.offcanvas {
-        width: 350px;
-    }
+
     .nav_buttons{
         display: flex;
-        gap: 1.3rem;
+        gap: 1rem;
         align-items: center;
     }
 

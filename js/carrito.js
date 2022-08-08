@@ -41,7 +41,6 @@ function crearhtml() {
     crearSection("Combos", "promos", combos);
     crearSection("Pizzas", "pizza", pizza);
     crearSection("Empanadas", "empanada", empanada);
-    console.log(carrito);
 }
 window.onload = crearhtml();
 //Crea una section
@@ -103,6 +102,7 @@ cardsProductos.forEach(item => {
     })
 })
 
+
 //Modifica al modal con los atributos del producto
 function editModal(producto) {
     let canti = document.getElementById("cont_Numb");
@@ -110,10 +110,6 @@ function editModal(producto) {
     btnsModCant(canti);
     let addCarr = document.getElementById("addCarrito");
     addCarr.onclick = () => {
-        if (carrito == 0) {
-            let msg = document.querySelector("#msgSinP");
-            msg.classList.replace("d-block" ,"d-none");
-        }
         btnAddCarrito(producto, canti);
     }
 }
@@ -150,7 +146,25 @@ function btnsModCant(canti) {
 //Añade el producto al carrito
 function btnAddCarrito(producto, canti) {
     añadirCarrito(producto, parseInt(canti.textContent));
+    if (carrito == 0) {
+        const msg = document.querySelector(".msgSinP");
+        msg.classList.replace("d-block", "d-none");
+    }
     showCarrito();
+}
+
+//añade al array carrito y verifica si existe o no en el array
+function añadirCarrito(producto, canti) {
+    let prodToAdd = carrito.find((element) => element.id == producto.id)
+    if (prodToAdd == undefined) {
+        carrito.push(producto);
+        carrito[carrito.length - 1].cantidad = canti;
+    } else {
+        prodToAdd.cantidad += canti;
+    }
+}
+
+function btnsCarrito() {
     const rBtnBuy = document.querySelectorAll(".rBtnBuy");
     const lBtnBuy = document.querySelectorAll(".lBtnBuy");
     let labelCant = document.getElementsByClassName("cant-prodBuy");
@@ -161,13 +175,12 @@ function btnAddCarrito(producto, canti) {
             let index = parseInt(arrayClasname[2]);
             let valorCanti = carrito[index].cantidad;
             carrito[index].cantidad++;
-            console.log(valorCanti);
             labelCant[index].innerHTML = `${valorCanti + 1}`
-            console.log(labelCant[index])
             if (valorCanti == 1) {
                 btnDel[index].classList.replace("d-block", "d-none");
                 lBtnBuy[index].classList.replace("d-none", "d-block");
             }
+            getPrecioFinal();
         })
     })
     lBtnBuy.forEach(item => {
@@ -184,45 +197,34 @@ function btnAddCarrito(producto, canti) {
                     item.classList.replace("d-block", "d-none");
                 }
                 carrito[index].cantidad--;
-                console.log(valorCanti);
             }
-            
+            getPrecioFinal();
         })
     })
     btnDel.forEach(item => {
-        item.addEventListener('click', () =>{
-            let arrayClasname = item.className.split(" ");;
+        item.addEventListener('click', () => {
+            let arrayClasname = item.className.split(" ");
             let index = parseInt(arrayClasname[2]);
             carrito.splice(index, 1);
-            let msg = document.querySelector("#msgSinP");
-            console.log(msg);
-            
-            showCarrito();
+            showCarrito()
+            if (carrito.length == 0) {
+                let canasta = document.getElementById("carrito");
+                canasta.innerHTML = `<div class="d-block msgSinP" >
+                <h3>No hay productos</h3>
+            </div>
+            `
+            }
         })
     })
-    
-}
-//añade al array carrito y verifica si existe o no en el array
-function añadirCarrito(producto, canti) {
-    let prodToAdd = carrito.find((element) => element.id == producto.id)
-    if (prodToAdd == undefined) {
-        carrito.push(producto);
-        carrito[carrito.length - 1].cantidad = canti;
-    } else {
-        prodToAdd.cantidad += canti;
-    }
-}
-function BorrarCarrito() {
-
 }
 //muestra los productos
 function showCarrito() {
     let canasta = document.getElementById("carrito");
+    carrito.change
     let prodCarrito = "";
     for (let i = 0; i < carrito.length; i++) {
         let classBtndl = "d-none";
         let classLbtn = "d-block";
-        console.log(carrito[i].cantidad);
         if (carrito[i].cantidad == 1) {
             classBtndl = "d-block";
             classLbtn = "d-none";
@@ -268,10 +270,13 @@ function showCarrito() {
                         </div>`
     }
     canasta.innerHTML = prodCarrito;
+    getPrecioFinal();
+    btnsCarrito()
+}
+//devuelve el precio
+function getPrecioFinal() {
     const precioFinal = carrito.reduce((acumulador, producto) => acumulador += (producto.precio * producto.cantidad), 0);
     document.getElementById("precioFinal").innerHTML = "$" + precioFinal;
-
 }
-
 
 

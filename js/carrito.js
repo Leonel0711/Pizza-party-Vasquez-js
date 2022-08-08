@@ -42,6 +42,8 @@ function crearhtml() {
     crearSection("Pizzas", "pizza", pizza);
     crearSection("Empanadas", "empanada", empanada);
 }
+
+
 window.onload = crearhtml();
 //Crea una section
 function crearSection(subTitle, id, listaProductos) {
@@ -59,6 +61,8 @@ function crearSection(subTitle, id, listaProductos) {
     section.append(divRow);
     divRow.innerHTML = crearProductos(listaProductos);
 }
+
+
 //crea las cards de los productos
 function crearProductos(listaProductos) {
     let string = "";
@@ -86,7 +90,8 @@ function crearProductos(listaProductos) {
     }
     return string;
 }
-//Escucha si hacen click sobre las cards para modificar el modal
+
+//Escucha si hacen click sobre las cards de un elemento para modificar el modal
 const cardsProductos = document.querySelectorAll(".producto");
 cardsProductos.forEach(item => {
     item.addEventListener('click', () => {
@@ -125,16 +130,20 @@ function modiModal(producto, canti) {
     editModal[3].innerText = producto.precio + "$";
     canti.innerText = 1;
 }
+
+
 //evento botones de cantidad del modal y crea una advertencia
 function btnsModCant(canti) {
     let rbutton = document.getElementById("r_button");
     let lbutton = document.getElementById("l_button");
     let adv = document.getElementById("advertencia");
     adv.innerHTML = ``
+    //Evento del boton de sumar cantidad en el modal
     rbutton.onclick = () => {
         canti.innerHTML = `${parseInt(canti.textContent) + 1}`;
         adv.innerHTML = ``
     }
+    //Evento del boton de restar cantidad en el modal
     lbutton.onclick = () => {
         if (parseInt(canti.textContent) > 1) {
             canti.innerHTML = `${parseInt(canti.textContent) - 1}`
@@ -143,7 +152,9 @@ function btnsModCant(canti) {
         }
     }
 }
-//Añade el producto al carrito
+
+
+//Añade el producto al carrito y llama a la funcion showCarrito
 function btnAddCarrito(producto, canti) {
     añadirCarrito(producto, parseInt(canti.textContent));
     if (carrito == 0) {
@@ -152,6 +163,7 @@ function btnAddCarrito(producto, canti) {
     }
     showCarrito();
 }
+
 
 //añade al array carrito y verifica si existe o no en el array
 function añadirCarrito(producto, canti) {
@@ -164,25 +176,33 @@ function añadirCarrito(producto, canti) {
     }
 }
 
+
+//Les da un evento a cada boton de los elementos
 function btnsCarrito() {
     const rBtnBuy = document.querySelectorAll(".rBtnBuy");
     const lBtnBuy = document.querySelectorAll(".lBtnBuy");
     let labelCant = document.getElementsByClassName("cant-prodBuy");
     const btnDel = document.querySelectorAll(".dBtnBuy");
+    const precioLabel = document.querySelectorAll(".precioLabel");
+
+    //Btn de Sumar cantidad a un producto
     rBtnBuy.forEach(item => {
         item.addEventListener('click', () => {
             let arrayClasname = item.className.split(" ");;
             let index = parseInt(arrayClasname[2]);
-            let valorCanti = carrito[index].cantidad;
             carrito[index].cantidad++;
-            labelCant[index].innerHTML = `${valorCanti + 1}`
-            if (valorCanti == 1) {
+            let valorCanti = carrito[index].cantidad;
+            labelCant[index].innerHTML = `${valorCanti}`
+            if (valorCanti >= 1) {
                 btnDel[index].classList.replace("d-block", "d-none");
                 lBtnBuy[index].classList.replace("d-none", "d-block");
             }
+            precioLabel[index].innerText=`$${carrito[index].precio * carrito[index].cantidad}`
             getPrecioFinal();
         })
     })
+
+    //Btn de restar cantidad a un producto
     lBtnBuy.forEach(item => {
         item.addEventListener('click', () => {
             let arrayClasname = item.className.split(" ");;
@@ -198,9 +218,12 @@ function btnsCarrito() {
                 }
                 carrito[index].cantidad--;
             }
+            precioLabel[index].innerText=`$${carrito[index].precio * carrito[index].cantidad}`
             getPrecioFinal();
         })
     })
+
+    //Boton de borrar para cada elemento.
     btnDel.forEach(item => {
         item.addEventListener('click', () => {
             let arrayClasname = item.className.split(" ");
@@ -217,18 +240,21 @@ function btnsCarrito() {
         })
     })
 }
-//muestra los productos
+
+
+//muestra los productos y actualiza cuando se borra uno
 function showCarrito() {
     let canasta = document.getElementById("carrito");
-    carrito.change
     let prodCarrito = "";
     for (let i = 0; i < carrito.length; i++) {
         let classBtndl = "d-none";
         let classLbtn = "d-block";
+        //Verifica si la cantidad es uno para mostrar el btn de borrar
         if (carrito[i].cantidad == 1) {
             classBtndl = "d-block";
             classLbtn = "d-none";
         }
+        //Genera el string con cada elemento
         prodCarrito += `<div class="prodCarrito" >
                             <div>
                                 <img src="${carrito[i].linkImg}" alt="${carrito[i].nombre}" class="imgProdCar">
@@ -236,7 +262,7 @@ function showCarrito() {
                             <div>
                                 <h3>${carrito[i].nombre}</h3>
                                 <p class="descripCar">${carrito[i].descripcion}</p>
-                                <p>$${(carrito[i].precio * carrito[i].cantidad)}</p>
+                                <p class="precioLabel">$${(carrito[i].precio * carrito[i].cantidad)}</p>
                             </div>
                             <div class="w-100">
                                 <div class="modalButton dBtnBuy ${i} ${classBtndl} "  >
@@ -273,7 +299,11 @@ function showCarrito() {
     getPrecioFinal();
     btnsCarrito()
 }
-//devuelve el precio
+
+
+
+
+//devuelve el precioFinal del carrito
 function getPrecioFinal() {
     const precioFinal = carrito.reduce((acumulador, producto) => acumulador += (producto.precio * producto.cantidad), 0);
     document.getElementById("precioFinal").innerHTML = "$" + precioFinal;

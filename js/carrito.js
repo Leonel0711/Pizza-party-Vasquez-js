@@ -42,7 +42,6 @@ function crearhtml() {
     crearSection("Pizzas", "pizza", pizza);
     crearSection("Empanadas", "empanada", empanada);
     console.log(carrito);
-    recibirLlamadoModal();
 }
 window.onload = crearhtml();
 //Crea una section
@@ -89,22 +88,21 @@ function crearProductos(listaProductos) {
     return string;
 }
 //Escucha si hacen click sobre las cards para modificar el modal
-function recibirLlamadoModal() {
-    const cardsProductos = document.querySelectorAll(".producto");
-    cardsProductos.forEach(item => {
-        item.addEventListener('click', () => {
-            let productoFind;
-            let idCardProducto = parseInt(item.id);
-            for (let i = 0; i < inventario.length; i++) {
-                productoFind = inventario[i].find((element) => element.id === idCardProducto)
-                if (productoFind != undefined) {
-                    break;
-                }
+const cardsProductos = document.querySelectorAll(".producto");
+cardsProductos.forEach(item => {
+    item.addEventListener('click', () => {
+        let productoFind;
+        let idCardProducto = parseInt(item.id);
+        for (let i = 0; i < inventario.length; i++) {
+            productoFind = inventario[i].find((element) => element.id === idCardProducto)
+            if (productoFind != undefined) {
+                break;
             }
-            editModal(productoFind);
-        })
+        }
+        editModal(productoFind);
     })
-}
+})
+
 //Modifica al modal con los atributos del producto
 function editModal(producto) {
     let canti = document.getElementById("cont_Numb");
@@ -112,13 +110,15 @@ function editModal(producto) {
     btnsModCant(canti);
     let addCarr = document.getElementById("addCarrito");
     addCarr.onclick = () => {
-        if(carrito==0){
-            let msg = document.getElementById("msgSinP");
-            msg.className="d-none";
+        if (carrito == 0) {
+            let msg = document.querySelector("#msgSinP");
+            msg.classList.replace("d-block" ,"d-none");
         }
         btnAddCarrito(producto, canti);
     }
 }
+
+
 //Modifica el modal en base al objeto producto
 function modiModal(producto, canti) {
     let editModal = document.getElementsByClassName("editModal");
@@ -149,24 +149,58 @@ function btnsModCant(canti) {
 }
 //Añade el producto al carrito
 function btnAddCarrito(producto, canti) {
-    let canasta = document.getElementById("carrito");
     añadirCarrito(producto, parseInt(canti.textContent));
-    canasta.innerHTML = showCarrito();
-    const precioFinal = carrito.reduce((acumulador, producto) => acumulador += (producto.precio * producto.cantidad), 0);
-    document.getElementById("precioFinal").innerHTML = "$" + precioFinal;
+    showCarrito();
     const rBtnBuy = document.querySelectorAll(".rBtnBuy");
     const lBtnBuy = document.querySelectorAll(".lBtnBuy");
-    rBtnBuy.forEach(item  => {
+    let labelCant = document.getElementsByClassName("cant-prodBuy");
+    const btnDel = document.querySelectorAll(".dBtnBuy");
+    rBtnBuy.forEach(item => {
         item.addEventListener('click', () => {
-            
-            console.log(rBtnBuy);
+            let arrayClasname = item.className.split(" ");;
+            let index = parseInt(arrayClasname[2]);
+            let valorCanti = carrito[index].cantidad;
+            carrito[index].cantidad++;
+            console.log(valorCanti);
+            labelCant[index].innerHTML = `${valorCanti + 1}`
+            console.log(labelCant[index])
+            if (valorCanti == 1) {
+                btnDel[index].classList.replace("d-block", "d-none");
+                lBtnBuy[index].classList.replace("d-none", "d-block");
+            }
         })
     })
     lBtnBuy.forEach(item => {
         item.addEventListener('click', () => {
-
+            let arrayClasname = item.className.split(" ");;
+            let index = parseInt(arrayClasname[2]);
+            let valorCanti = carrito[index].cantidad;
+            if (carrito[index].cantidad >= 1) {
+                if (valorCanti > 2) {
+                    labelCant[index].innerHTML = `${valorCanti - 1}`
+                } else {
+                    labelCant[index].innerHTML = `${valorCanti - 1}`
+                    btnDel[index].classList.replace("d-none", "d-block");
+                    item.classList.replace("d-block", "d-none");
+                }
+                carrito[index].cantidad--;
+                console.log(valorCanti);
+            }
+            
         })
     })
+    btnDel.forEach(item => {
+        item.addEventListener('click', () =>{
+            let arrayClasname = item.className.split(" ");;
+            let index = parseInt(arrayClasname[2]);
+            carrito.splice(index, 1);
+            let msg = document.querySelector("#msgSinP");
+            console.log(msg);
+            
+            showCarrito();
+        })
+    })
+    
 }
 //añade al array carrito y verifica si existe o no en el array
 function añadirCarrito(producto, canti) {
@@ -176,54 +210,66 @@ function añadirCarrito(producto, canti) {
         carrito[carrito.length - 1].cantidad = canti;
     } else {
         prodToAdd.cantidad += canti;
-
     }
+}
+function BorrarCarrito() {
+
 }
 //muestra los productos
 function showCarrito() {
+    let canasta = document.getElementById("carrito");
     let prodCarrito = "";
     for (let i = 0; i < carrito.length; i++) {
-        prodCarrito += `<div class="prodCarrito" id="${i}">
-    <div>
-        <img src="${carrito[i].linkImg}" alt="${carrito[i].nombre}" class="imgProdCar">
-    </div>
-    <div>
-        <h3>${carrito[i].nombre}</h3>
-        <p class="descripCar">${carrito[i].descripcion}</p>
-        <p>$${(carrito[i].precio * carrito[i].cantidad)}</p>
-    </div>
-    <div class="w-100">
-        <div class="modalButton d-none" id="dBtnBuy">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                viewBox="0 0 24 24" data-testid="delete">
-                <path fill="#6A696E"
-                    d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v10zM9 9h6c.55 0 1 .45 1 1v8c0 .55-.45 1-1 1H9c-.55 0-1-.45-1-1v-8c0-.55.45-1 1-1zm6.5-5l-.71-.71c-.18-.18-.44-.29-.7-.29H9.91c-.26 0-.52.11-.7.29L8.5 4H6c-.55 0-1 .45-1 1s.45 1 1 1h12c.55 0 1-.45 1-1s-.45-1-1-1h-2.5z">
-                </path>
-            </svg>
-        </div>
-        <div class="modalButton lBtnBuy">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                viewBox="0 0 24 24" data-testid="remove">
-                <path fill="#6A696E"
-                    d="M18 13H6c-.55 0-1-.45-1-1s.45-1 1-1h12c.55 0 1 .45 1 1s-.45 1-1 1z">
-                </path>
-            </svg>
-        </div>
-        <div class="number">
-            <span class="cant-prodBuy" color="graya100" data-testid="typography" value="1">${carrito[i].cantidad}</span>
-        </div>
-        <div class="modalButton rBtnBuy">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                viewBox="0 0 24 24" data-testid="add">
-                <path fill="#6a696e"
-                    d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z">
-                </path>
-            </svg>
-        </div>
-    </div>
-</div>`
+        let classBtndl = "d-none";
+        let classLbtn = "d-block";
+        console.log(carrito[i].cantidad);
+        if (carrito[i].cantidad == 1) {
+            classBtndl = "d-block";
+            classLbtn = "d-none";
+        }
+        prodCarrito += `<div class="prodCarrito" >
+                            <div>
+                                <img src="${carrito[i].linkImg}" alt="${carrito[i].nombre}" class="imgProdCar">
+                            </div>
+                            <div>
+                                <h3>${carrito[i].nombre}</h3>
+                                <p class="descripCar">${carrito[i].descripcion}</p>
+                                <p>$${(carrito[i].precio * carrito[i].cantidad)}</p>
+                            </div>
+                            <div class="w-100">
+                                <div class="modalButton dBtnBuy ${i} ${classBtndl} "  >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 24 24" data-testid="delete">
+                                        <path fill="#6A696E"
+                                            d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v10zM9 9h6c.55 0 1 .45 1 1v8c0 .55-.45 1-1 1H9c-.55 0-1-.45-1-1v-8c0-.55.45-1 1-1zm6.5-5l-.71-.71c-.18-.18-.44-.29-.7-.29H9.91c-.26 0-.52.11-.7.29L8.5 4H6c-.55 0-1 .45-1 1s.45 1 1 1h12c.55 0 1-.45 1-1s-.45-1-1-1h-2.5z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="modalButton lBtnBuy ${i} ${classLbtn}" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 24 24" data-testid="remove">
+                                        <path fill="#6A696E"
+                                            d="M18 13H6c-.55 0-1-.45-1-1s.45-1 1-1h12c.55 0 1 .45 1 1s-.45 1-1 1z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="number">
+                                    <span class="cant-prodBuy" color="graya100" data-testid="typography" value="1">${carrito[i].cantidad}</span>
+                                </div>
+                                <div class="modalButton rBtnBuy ${i}" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 24 24" data-testid="add">
+                                        <path fill="#6a696e"
+                                            d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z">
+                                        </path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>`
     }
-    return prodCarrito;
+    canasta.innerHTML = prodCarrito;
+    const precioFinal = carrito.reduce((acumulador, producto) => acumulador += (producto.precio * producto.cantidad), 0);
+    document.getElementById("precioFinal").innerHTML = "$" + precioFinal;
 
 }
 

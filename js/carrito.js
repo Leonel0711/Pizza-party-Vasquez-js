@@ -25,7 +25,6 @@ const pizza = [
     new Productos(202, "Pizza Napolitana", "pizza napo", 1050, "pizza", "Pizza muzzarella con perejil , ajo , rodaja de tomate , aceituna y orégano", "../img/Pizzas/pizza_napo.jpg"),
     new Productos(203, "Pizza Fugazzeta", "pizza fuga", 1000, "pizza", "Pizza muzzarella con cebolla ,aceituna y orégano", "../img/Pizzas/pizza_fugazzeta.jpg"),
 ];
-
 //Array Empanadas
 const empanada = [
     new Productos(300, "Empanada de Carne", "emp Carne", 180, "empanada", "Clásica empanada de carne molida, huevo, arvejas, morrón", "../img/Empanadas/empanadas_carne.jpg"),
@@ -33,9 +32,9 @@ const empanada = [
     new Productos(302, "Empanada de Choclo", "emp Choclo", 190, "empanada", "Empanadas de choclo molido con morrón y especias al horno", "../img/Empanadas/empanadas_humita.png")
 ];
 //inventario
-const inventario = [combos, pizza, empanada];
+const inventario = [...combos, ...pizza, ...empanada];
 //carrito
-const carrito = [];
+let carrito = [];
 //Crear las section 
 function crearhtml() {
     crearSection("Combos", "promos", combos);
@@ -95,14 +94,8 @@ function crearProductos(listaProductos) {
 const cardsProductos = document.querySelectorAll(".producto");
 cardsProductos.forEach(item => {
     item.addEventListener('click', () => {
-        let productoFind;
         let idCardProducto = parseInt(item.id);
-        for (let i = 0; i < inventario.length; i++) {
-            productoFind = inventario[i].find((element) => element.id === idCardProducto)
-            if (productoFind != undefined) {
-                break;
-            }
-        }
+        let productoFind = inventario.find((element) => element.id === idCardProducto)
         editModal(productoFind);
     })
 })
@@ -161,6 +154,7 @@ function btnAddCarrito(producto, canti) {
         const msg = document.querySelector(".msgSinP");
         msg.classList.replace("d-block", "d-none");
     }
+    saveSessionStorage()
     showCarrito();
 }
 
@@ -174,9 +168,21 @@ function añadirCarrito(producto, canti) {
     } else {
         prodToAdd.cantidad += canti;
     }
+
 }
-
-
+function saveSessionStorage() {
+    sessionStorage.setItem("carrito", JSON.stringify(carrito))
+}
+function getSessionStorage() {
+    let carritoStorage = JSON.parse(sessionStorage.getItem("carrito"));
+    console.log(carritoStorage);
+    if (carritoStorage == null) {
+        return false;
+    } else {
+        carrito.push(...carritoStorage);
+        console.log(carrito);
+    }
+}
 //Les da un evento a cada boton de los elementos
 function btnsCarrito() {
     const rBtnBuy = document.querySelectorAll(".rBtnBuy");
@@ -197,8 +203,9 @@ function btnsCarrito() {
                 btnDel[index].classList.replace("d-block", "d-none");
                 lBtnBuy[index].classList.replace("d-none", "d-block");
             }
-            precioLabel[index].innerText=`$${carrito[index].precio * carrito[index].cantidad}`
+            precioLabel[index].innerText = `$${carrito[index].precio * carrito[index].cantidad}`
             getPrecioFinal();
+            saveSessionStorage();
         })
     })
 
@@ -210,16 +217,17 @@ function btnsCarrito() {
             let valorCanti = carrito[index].cantidad;
             if (carrito[index].cantidad >= 1) {
                 if (valorCanti > 2) {
-                    labelCant[index].innerHTML = `${valorCanti - 1}`
+                    labelCant[index].innerHTML = `${valorCanti - 1}`;
                 } else {
-                    labelCant[index].innerHTML = `${valorCanti - 1}`
+                    labelCant[index].innerHTML = `${valorCanti - 1}`;
                     btnDel[index].classList.replace("d-none", "d-block");
                     item.classList.replace("d-block", "d-none");
                 }
                 carrito[index].cantidad--;
             }
-            precioLabel[index].innerText=`$${carrito[index].precio * carrito[index].cantidad}`
+            precioLabel[index].innerText = `$${carrito[index].precio * carrito[index].cantidad}`;
             getPrecioFinal();
+            saveSessionStorage();
         })
     })
 
@@ -237,13 +245,20 @@ function btnsCarrito() {
             </div>
             `
             }
+            saveSessionStorage();
         })
     })
 }
-
+window.onload = () => {
+    getSessionStorage();
+    if (carrito.length != 0) {
+        showCarrito();
+    }
+}
 
 //muestra los productos y actualiza cuando se borra uno
 function showCarrito() {
+
     let canasta = document.getElementById("carrito");
     let prodCarrito = "";
     for (let i = 0; i < carrito.length; i++) {
@@ -297,7 +312,7 @@ function showCarrito() {
     }
     canasta.innerHTML = prodCarrito;
     getPrecioFinal();
-    btnsCarrito()
+    btnsCarrito();
 }
 
 
@@ -309,4 +324,36 @@ function getPrecioFinal() {
     document.getElementById("precioFinal").innerHTML = "$" + precioFinal;
 }
 
-
+const btnFinal = document.getElementById("btnFinalizar");
+btnFinal.onclick = () => {
+    if(carrito.length != 0){
+        alert("Su pedido ha sido enviado");
+    }
+    carrito.splice(0);
+    showCarrito();
+    if (carrito.length == 0) {
+        let canasta = document.getElementById("carrito");
+        canasta.innerHTML = `<div class="d-block msgSinP" >
+                <h3>No hay productos</h3>
+            </div>
+            `
+    }
+    saveSessionStorage();
+}
+const borra = document.getElementById("borrar");
+borra.onclick = () => {
+    if(carrito.length != 0){
+        alert("Su pedido ha sido borrado");
+    }
+    
+    carrito.splice(0);
+    showCarrito();
+    if (carrito.length == 0) {
+        let canasta = document.getElementById("carrito");
+        canasta.innerHTML = `<div class="d-block msgSinP" >
+                <h3>No hay productos</h3>
+            </div>
+            `
+    }
+    saveSessionStorage();
+}

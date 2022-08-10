@@ -68,7 +68,7 @@ function crearSection(subTitle, id, listaProductos) {
     let section = document.createElement('section');
     let h2 = document.createElement('h2');
     let divRow = document.createElement('div');
-    section.className = "container-xl set_deli";
+    section.className = "container-xxl set_deli";
     h2.className = "text-center my-3";
     h2.innerText = subTitle;
     divRow.className = "row row_gap";
@@ -92,7 +92,7 @@ function crearProductos(listaProductos) {
             <div>
                 <h3>${nombre}</h3>
                 <p class="descrip">${descrip}</p>
-                <p>${precio}$</p>
+                <p class="precioCard">${precio}$</p>
             </div>
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -155,6 +155,10 @@ function btnsModCant(canti) {
     lbutton.onclick = () => {
         parseInt(canti.textContent) > 1 ? canti.innerHTML = `${parseInt(canti.textContent) - 1}` : adv.innerHTML = `No se puede ingresar menos productos`;
     }
+}
+function changeCantCarrito(){
+    let num = document.getElementById("cantProdCarrito");
+    num.innerHTML= `${carrito.length}`
 }
 
 //Añade el producto al carrito y llama a la funcion showCarrito
@@ -252,6 +256,7 @@ window.onload = () => {
 
 //muestra los productos y actualiza cuando se borra uno
 function showCarrito() {
+    changeCantCarrito();
     let canasta = document.getElementById("carrito");
     let prodCarrito = "";
     for (let i = 0; i < carrito.length; i++) {

@@ -7,9 +7,14 @@
 body {
   background: url("../img/fondo/fondo4.jpg"); }
 
+.containerTitle {
+  text-align: center; }
+
 .color_title {
   color: #c70808;
-  text-decoration: overline underline; }
+  text-decoration: underline;
+  background-color: white;
+  display: inline-block; }
 
 /*mixin footer*/
 /*Se creo un mixin para el footer*/
@@ -164,6 +169,9 @@ nav div.offcanvas {
     align-items: center;
     box-sizing: content-box;
     border: 1px solid white; }
+
+.swal2-styled.swal2-confirm {
+  background-color: #b90202; }
 
 .searchNav {
   background-color: #b90202;

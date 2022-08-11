@@ -9,9 +9,14 @@
 body {
     background: url("../img/fondo/fondo4.jpg");
 }
+.containerTitle{
+    text-align: center;
+}
 .color_title{
     color: $RojoPrincipal;
-    text-decoration: overline underline;
+    text-decoration: underline;
+    background-color: white;
+    display: inline-block;
 }
 
 

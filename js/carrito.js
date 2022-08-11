@@ -23,33 +23,33 @@ const pizza = [
     new Productos(201, "Pizza de Jamon y Queso", 960, "pizza", "Pizza de jamon y muzzarella con aceituna y orégano", "../img/Pizzas/pizza_jamon.jpg"),
     new Productos(202, "Pizza Napolitana", 1050, "pizza", "Pizza muzzarella con perejil , ajo , rodaja de tomate , aceituna y orégano", "../img/Pizzas/pizza_napo.jpg"),
     new Productos(203, "Pizza Fugazzeta", 1000, "pizza", "Pizza muzzarella con cebolla ,aceituna y orégano", "../img/Pizzas/pizza_fugazzeta.jpg"),
-    new Productos(204,"Pizza de peperoni",1150,"pizza","Clásica pizza muzzarella con rodajas de peperoni","../img/Pizzas/pizza_peperoni.png"),
-    new Productos(205,"Pizza de especial de la casa",1300,"pizza","Pizza muzza con morrón,jamón, huevo, queso rallado, aceituna y orégano","../img/Pizzas/pizza_especialidad_casa.jpg")
+    new Productos(204, "Pizza de peperoni", 1150, "pizza", "Clásica pizza muzzarella con rodajas de peperoni", "../img/Pizzas/pizza_peperoni.png"),
+    new Productos(205, "Pizza de especial de la casa", 1300, "pizza", "Pizza muzza con morrón,jamón, huevo, queso rallado, aceituna y orégano", "../img/Pizzas/pizza_especialidad_casa.jpg")
 ];
 //Array Empanadas
 const empanada = [
     new Productos(300, "Empanada de Carne", 180, "empanada", "Clásica empanada de carne molida, huevo, arvejas, morrón", "../img/Empanadas/empanadas_carne.jpg"),
     new Productos(301, "Empanada de Jamon y Queso", 180, "empanada", "Clásica empanada de jamón y muzzarella derretida al horno", "../img/Empanadas/empanadas_jyq.jpg"),
     new Productos(302, "Empanada de Choclo", 190, "empanada", "Empanadas de choclo molido con morrón y especias al horno", "../img/Empanadas/empanadas_humita.png"),
-    new Productos(303,"Empanadas salteñas",190,"empanada","Clásicas empanadas de carne cortada a cuchillo al estilo de Salta","../img/Empanadas/empanadas_saltenias.jpg")
+    new Productos(303, "Empanadas salteñas", 190, "empanada", "Clásicas empanadas de carne cortada a cuchillo al estilo de Salta", "../img/Empanadas/empanadas_saltenias.jpg")
 ];
 //Array Minutas
 const minuta = [
-    new Productos(400,"milanesa napolitana con fritas",1200,"minuta","milanesa con jamón y muzza con guarnición de papas fritas","../img/Minutas/milanesa_fritas.jpg"),
-    new Productos(401,"milanesa napolitana con pure",1150,"minuta","milanesa al horno con guarnición de pure","../img/Minutas/milanes_pure.jpg"),
-    new Productos(402,"Sándwich de milanesa completo",1250,"minuta","Sándwich de milanesa con tomate, lechuga, jamón y queso, con guarnición de fritas","../img/Minutas/sandwich_milanesaC.jpg"),
-    new Productos(403,"hamburguesa completa",1250,"minuta","hamburguesa con tomate, lechuga, cebolla, morada, jamón y queso chédar,con guarnición de fritas","../img/Minutas/hamburguesa_fritas.jpg")
+    new Productos(400, "milanesa napolitana con fritas", 1200, "minuta", "milanesa con jamón y muzza con guarnición de papas fritas", "../img/Minutas/milanesa_fritas.jpg"),
+    new Productos(401, "milanesa napolitana con pure", 1150, "minuta", "milanesa al horno con guarnición de pure", "../img/Minutas/milanes_pure.jpg"),
+    new Productos(402, "Sándwich de milanesa completo", 1250, "minuta", "Sándwich de milanesa con tomate, lechuga, jamón y queso, con guarnición de fritas", "../img/Minutas/sandwich_milanesaC.jpg"),
+    new Productos(403, "hamburguesa completa", 1250, "minuta", "hamburguesa con tomate, lechuga, cebolla, morada, jamón y queso chédar,con guarnición de fritas", "../img/Minutas/hamburguesa_fritas.jpg")
 ];
 //Array Bebidas 
 const bebida = [
-    new Productos(500,"CocaCola 1.5L",300,"bebida"," ","../img/Bebidas/CocaCola.webp"),
-    new Productos(501,"Pepsi 1.5L",280,"bebida"," ","../img/Bebidas/Pepsi.jpg"),
-    new Productos(502,"Cerveza Salta Rubia 1L",350,"bebida"," ","../img/Bebidas/SaltaRubia.png" ),
-    new Productos(503,"Cerveza brahama 1L",350,"bebida","","../img/Bebidas/Brahama.webp")
+    new Productos(500, "CocaCola 1.5L", 300, "bebida", " ", "../img/Bebidas/CocaCola.webp"),
+    new Productos(501, "Pepsi 1.5L", 280, "bebida", " ", "../img/Bebidas/Pepsi.jpg"),
+    new Productos(502, "Cerveza Salta Rubia 1L", 350, "bebida", " ", "../img/Bebidas/SaltaRubia.png"),
+    new Productos(503, "Cerveza brahama 1L", 350, "bebida", "", "../img/Bebidas/Brahama.webp")
 
 ];
 //inventario
-const inventario = [...combos, ...pizza, ...empanada,...minuta,...bebida];
+const inventario = [...combos, ...pizza, ...empanada, ...minuta, ...bebida];
 //carrito
 let carrito = [];
 //Crear las section 
@@ -61,7 +61,15 @@ function crearhtml() {
     crearSection("Bebidas", "bebida", bebida);
 }
 
-window.onload = crearhtml();
+//Evento para cargar el sessionStorage
+window.onload = () => {
+    crearhtml();
+    getSessionStorage();
+    if (carrito.length != 0) {
+        showCarrito();
+    }
+}
+
 //Crea una section
 function crearSection(subTitle, id, listaProductos) {
     let main = document.getElementById("main");
@@ -77,6 +85,15 @@ function crearSection(subTitle, id, listaProductos) {
     section.append(h2);
     section.append(divRow);
     divRow.innerHTML = crearProductos(listaProductos);
+    const cardsProductos = document.querySelectorAll(".producto");
+    cardsProductos.forEach(item => {
+        item.addEventListener('click', () => {
+            console.log("pasa por el boton de llamado");
+            let idCardProducto = parseInt(item.id);
+            let productoFind = inventario.find((element) => element.id === idCardProducto)
+            editModal(productoFind);
+        })
+    })
 }
 
 //crea las cards de los productos
@@ -109,14 +126,7 @@ function crearProductos(listaProductos) {
 }
 
 //Escucha si hacen click sobre las cards de un elemento para modificar el modal
-const cardsProductos = document.querySelectorAll(".producto");
-cardsProductos.forEach(item => {
-    item.addEventListener('click', () => {
-        let idCardProducto = parseInt(item.id);
-        let productoFind = inventario.find((element) => element.id === idCardProducto)
-        editModal(productoFind);
-    })
-})
+
 
 //Modifica al modal con los atributos del producto
 function editModal(producto) {
@@ -156,9 +166,9 @@ function btnsModCant(canti) {
         parseInt(canti.textContent) > 1 ? canti.innerHTML = `${parseInt(canti.textContent) - 1}` : adv.innerHTML = `No se puede ingresar menos productos`;
     }
 }
-function changeCantCarrito(){
+function changeCantCarrito() {
     let num = document.getElementById("cantProdCarrito");
-    num.innerHTML= `${carrito.length}`
+    num.innerHTML = `${carrito.length}`
 }
 
 //Añade el producto al carrito y llama a la funcion showCarrito
@@ -170,6 +180,15 @@ function btnAddCarrito(producto, canti) {
     }
     saveSessionStorage()
     showCarrito();
+    //Toasty para notificar el agregado de un producto
+    Toastify({
+        text: "Producto añadido",
+        className: "info",
+        duration: 1000,
+        style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+        }
+    }).showToast();
 }
 
 //añade al array carrito y verifica si existe o no en el array
@@ -242,17 +261,21 @@ function btnsCarrito() {
             if (carrito.length == 0) {
                 canasta.innerHTML = `<div class="d-block msgSinP"><h3>No hay productos</h3></div>`
             }
+
+            //Toasty para notificar el borrado de un producto
+            Toastify({
+                text: "Producto borrado",
+                className: "info",
+                duration: 1000,
+                style: {
+                    background: "linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,0,0,1) 50%, rgba(135,19,11,1) 100%)",
+                }
+            }).showToast();
             saveSessionStorage();
         })
     })
 }
-//Evento para cargar el sessionStorage
-window.onload = () => {
-    getSessionStorage();
-    if (carrito.length != 0) {
-        showCarrito();
-    }
-}
+
 
 //muestra los productos y actualiza cuando se borra uno
 function showCarrito() {
@@ -329,9 +352,29 @@ btnFinal.onclick = () => {
 //boton para borrar el pedido
 const borra = document.getElementById("borrar");
 borra.onclick = () => {
-    carrito.length != 0 && alert("Su pedido ha sido borrado");
-    resetCarrito();
-    saveSessionStorage();
+    condicion = carrito.length != 0 && true;
+    //Swal para la confirmacion de vaciado de Carrito
+    if (condicion) {
+        Swal.fire({
+            title: 'Vaciar Carrito',
+            text: '¿Está seguro de vaciar el carrito?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, seguro',
+            customClass: {
+                confirmButton: 'btnRed',
+            },
+            cancelButtonText: 'No, no quiero'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('Borrado', 'El carrito ha sido vaciado', 'success')
+                resetCarrito();
+                saveSessionStorage();
+            }
+        })
+    }
+
+
 }
 //funcion para limpiar el carrito
 function resetCarrito() {

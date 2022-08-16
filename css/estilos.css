@@ -144,15 +144,18 @@ nav div.offcanvas {
   .cards_menu div div.card div {
     height: 40%; }
 
-.set_menu, .set_deli {
+.set_menu {
   scroll-margin-top: 8rem;
   padding: 2rem 0;
   margin: 4rem auto; }
   @media screen and (min-width: 576px) {
-    .set_menu, .set_deli {
+    .set_menu {
       scroll-margin-top: 11rem; } }
 
 /*Delivery*/
+#contSection {
+  min-height: 50vh; }
+
 #btnCarritoNav {
   position: relative; }
   #btnCarritoNav .cantProdCarr {
@@ -173,6 +176,9 @@ nav div.offcanvas {
 .swal2-styled.swal2-confirm {
   background-color: #b90202; }
 
+.btnRed {
+  background-color: #b90202; }
+
 .searchNav {
   background-color: #b90202;
   padding: 1rem; }
@@ -184,9 +190,15 @@ nav div.offcanvas {
       transform: scale(0.8); }
 
 .set_deli {
+  scroll-margin-top: 12rem;
+  padding: 2rem 0;
+  margin: 4rem auto;
   background-color: white;
   padding: 1rem;
   box-shadow: 1px 1px 3px black; }
+  @media screen and (min-width: 576px) {
+    .set_deli {
+      scroll-margin-top: 15rem; } }
   .set_deli h2 {
     color: #b90202; }
   @media screen and (min-width: 1200px) {

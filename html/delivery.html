@@ -122,7 +122,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="dropdown-item" href="#promos">Promociones</a>
+                                    <a class="dropdown-item" href="#combo">Combos</a>
                                 </li>
                                 <li><a class="dropdown-item" href="#pizza">Pizza</a></li>
                                 <li>
@@ -139,11 +139,7 @@
                 </div>
             </div>
         </div>
-    </nav>
-    <!--End Nav-->
-
-    <main id="main">
-        <div class="searchNav">
+        <div class="searchNav w-100">
             <button id="searchBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
                     class="sc-GVOUr ewLtmx">
@@ -152,12 +148,20 @@
                     </path>
                 </svg>
             </button>
-            <input type="text" placeholder="Busca en PIZZA PARTY...">
+            <input type="text" id="buscar" placeholder="Busca en PIZZA PARTY...">
         </div>
+        
+    </nav>
+    <!--End Nav-->
+
+    <main id="main">
+        
         <div class="containerTitle">
             <h1 class="text-center my-3 color_title">Delivery</h1>
         </div>
+        <div id="contSection">
 
+        </div>
         <div class="modal fade" id="modal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content" id="modalWork">

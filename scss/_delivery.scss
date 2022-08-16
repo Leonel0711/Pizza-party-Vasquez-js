@@ -1,6 +1,10 @@
 /*Delivery*/
+#contSection{
+    min-height: 50vh;
+}
 #btnCarritoNav {
     position: relative;
+
     .cantProdCarr {
         position: absolute;
         background: rgb(41, 216, 132);
@@ -17,7 +21,12 @@
         border: 1px solid rgb(255, 255, 255);
     }
 }
-.swal2-styled.swal2-confirm{
+
+.swal2-styled.swal2-confirm {
+    background-color: rgb(185, 2, 2);
+}
+
+.btnRed {
     background-color: rgb(185, 2, 2);
 }
 
@@ -39,7 +48,12 @@
 
 //section
 .set_deli {
-    @extend .set_menu;
+    scroll-margin-top: 12rem;
+    padding: 2rem 0;
+    margin: 4rem auto;
+    @media screen and (min-width:576px) {
+            scroll-margin-top: 15rem;
+    }
     background-color: white;
     padding: 1rem;
 

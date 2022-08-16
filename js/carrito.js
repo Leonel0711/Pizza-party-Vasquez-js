@@ -1,4 +1,4 @@
-//Clase constructora de productos
+/* //Clase constructora de productos
 class Productos {
     constructor(id, nombre, precio, categoria, descripcion, linkImg) {
         this.id = parseInt(id);
@@ -47,53 +47,99 @@ const bebida = [
     new Productos(502, "Cerveza Salta Rubia 1L", 350, "bebida", " ", "../img/Bebidas/SaltaRubia.png"),
     new Productos(503, "Cerveza brahama 1L", 350, "bebida", "", "../img/Bebidas/Brahama.webp")
 
-];
+]; */
 //inventario
-const inventario = [...combos, ...pizza, ...empanada, ...minuta, ...bebida];
+//const inventario = [...combos, ...pizza, ...empanada, ...minuta, ...bebida];
+const inventario = [];
+const combos = [];
+const pizza = [];
+const empanada = [];
+const minuta = [];
+const bebida = [];
 //carrito
 let carrito = [];
 //Crear las section 
-function crearhtml() {
-    crearSection("Combos", "promos", combos);
-    crearSection("Pizzas", "pizza", pizza);
-    crearSection("Empanadas", "empanada", empanada);
-    crearSection("Minutas", "minuta", minuta);
-    crearSection("Bebidas", "bebida", bebida);
-}
-
 //Evento para cargar el sessionStorage
 window.onload = () => {
-    crearhtml();
+    getInventario();
     getSessionStorage();
     if (carrito.length != 0) {
         showCarrito();
     }
 }
 
+function getInventario() {
+    const url = "../json/inventario.json";
+    fetch(url)
+        .then(response => response.json().then(data => {
+            inventario.push(...data);
+            crearHtml(data)
+        }))
+        .catch(err => console.log(err))
+
+}
+function filterCategoria(arrayProductos, categoria) {
+    return arrayProductos.filter((producto) => producto.categoria == categoria);
+}
+const btnSearch = document.getElementById("searchBtn");
+const inputSearch = document.getElementById("buscar");
+btnSearch.onclick = () => {
+    filtrarInput()
+}
+const arraySearch = []
+inputSearch.addEventListener("keyup", filtrarInput)
+function filtrarInput() {
+    arraySearch.splice(0);
+    let main = document.getElementById("contSection");
+    main.innerHTML=``
+    const texto = inputSearch.value.toUpperCase();
+    for (let producto of inventario) {
+        let nombre = producto.nombre.toUpperCase();
+        if (nombre.indexOf(texto) !== -1) {
+            arraySearch.push(producto)
+        }
+    }
+    crearHtml(arraySearch);
+    if(main.innerHTML === ""){
+        main.innerHTML = `<h3 class="text-center"> producto no encontrado</h3>`
+    }
+}
+function crearHtml(arrayProduc){
+    crearSection("Combos", "combo", filterCategoria(arrayProduc, "combo"));
+    crearSection("Pizzas", "pizza", filterCategoria(arrayProduc, "pizza"));
+    crearSection("Empanadas", "empanada", filterCategoria(arrayProduc, "empanada"));
+    crearSection("Minutas", "minuta", filterCategoria(arrayProduc, "minuta"));
+    crearSection("Bebidas", "bebida", filterCategoria(arrayProduc, "bebida"));
+}
 //Crea una section
 function crearSection(subTitle, id, listaProductos) {
-    let main = document.getElementById("main");
-    let section = document.createElement('section');
-    let h2 = document.createElement('h2');
-    let divRow = document.createElement('div');
-    section.className = "container-xxl set_deli";
-    h2.className = "text-center my-3";
-    h2.innerText = subTitle;
-    divRow.className = "row row_gap";
-    section.id = id;
-    main.append(section);
-    section.append(h2);
-    section.append(divRow);
-    divRow.innerHTML = crearProductos(listaProductos);
-    const cardsProductos = document.querySelectorAll(".producto");
-    cardsProductos.forEach(item => {
-        item.addEventListener('click', () => {
-            console.log("pasa por el boton de llamado");
-            let idCardProducto = parseInt(item.id);
-            let productoFind = inventario.find((element) => element.id === idCardProducto)
-            editModal(productoFind);
+    if (listaProductos.length >= 1) {
+        let main = document.getElementById("contSection");
+        let section = document.createElement('section');
+        let h2 = document.createElement('h2');
+        let divRow = document.createElement('div');
+        section.className = "container-xxl set_deli";
+        h2.className = "text-center my-3";
+        h2.innerText = subTitle;
+        divRow.className = "row row_gap";
+        section.id = id;
+        main.append(section);
+        section.append(h2);
+        section.append(divRow);
+        divRow.innerHTML = crearProductos(listaProductos);
+        const cardsProductos = document.querySelectorAll(".producto");
+        
+//Escucha si hacen click sobre las cards de un elemento para modificar el modal
+        cardsProductos.forEach(item => {
+            item.addEventListener('click', () => {
+                console.log("pasa por el boton de llamado");
+                let idCardProducto = parseInt(item.id);
+                let productoFind = inventario.find((element) => element.id === idCardProducto)
+                editModal(productoFind);
+            })
         })
-    })
+    }
+
 }
 
 //crea las cards de los productos
@@ -124,8 +170,6 @@ function crearProductos(listaProductos) {
     }
     return string;
 }
-
-//Escucha si hacen click sobre las cards de un elemento para modificar el modal
 
 
 //Modifica al modal con los atributos del producto
@@ -220,7 +264,7 @@ function btnsCarrito() {
     //Btn de Sumar cantidad a un producto
     rBtnBuy.forEach(item => {
         item.addEventListener('click', () => {
-            let arrayClasname = item.className.split(" ");;
+            let arrayClasname = item.className.split(" ");
             let index = parseInt(arrayClasname[2]);
             let { cantidad, precio } = carrito[index];
             cantidad >= 1 && btnDel[index].classList.replace("d-block", "d-none");
@@ -235,7 +279,7 @@ function btnsCarrito() {
     //Btn de restar cantidad a un producto
     lBtnBuy.forEach(item => {
         item.addEventListener('click', () => {
-            let arrayClasname = item.className.split(" ");;
+            let arrayClasname = item.className.split(" ");
             let index = parseInt(arrayClasname[2]);
             let { cantidad, precio } = carrito[index];
             if (cantidad >= 1) {
@@ -261,7 +305,6 @@ function btnsCarrito() {
             if (carrito.length == 0) {
                 canasta.innerHTML = `<div class="d-block msgSinP"><h3>No hay productos</h3></div>`
             }
-
             //Toasty para notificar el borrado de un producto
             Toastify({
                 text: "Producto borrado",

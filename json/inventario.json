@@ -1,0 +1,213 @@
+[
+    {
+        "id": 100,
+        "nombre": "COMBO 1 PIZZA",
+        "precio": 1600,
+        "descripcion": "UNA CLÁSICA PIZZA DE MUZZARELLA + UNA GRANDEFUGAZZETA + 2 FAINAS DE REGALO",
+        "categoria": "combo",
+        "linkImg": "../img/promoDeli/Promo1.png",
+        "cantidad": 0,
+        "stock": true
+    },
+    {
+        "id": 101,
+        "nombre": "COMBO 2 PIZZA",
+        "precio": 1600,
+        "descripcion": "UNA CLÁSICA PIZZA DE MUZZARELLA + UNA GRANDE DE JAMON + 2 FAINAS DE REGALO",
+        "categoria": "combo",
+        "linkImg": "../img/promoDeli/Promo2.png",
+        "cantidad": 0,
+        "stock": true
+    },
+    {
+        "id": 102,
+        "nombre": "COMBO 3 PIZZA",
+        "precio": 1600,
+        "descripcion": "UNA CLÁSICA PIZZA DE MUZZARELLA + UNA GRANDE NAPOLITANA + 2 FAINAS DE REGALO",
+        "categoria": "combo",
+        "linkImg": "../img/promoDeli/Promo3.png",
+        "cantidad": 0,
+        "stock": true
+    },
+    {
+        "id": 200,
+        "nombre": "PIZZA MUZZARELLA",
+        "precio": 900,
+        "descripcion": "UNA CLÁSICA PIZZA MUZZARELLA CON ACEITUNA Y ORÉGANO",
+        "categoria": "pizza",
+        "linkImg": "../img/Pizzas/pizza_muzzarela.jpg",
+        "cantidad": 0,
+        "stock": true
+    },
+    {
+        "id": 201,
+        "nombre": "PIZZA DE JAMON Y QUESO",
+        "precio": 960,
+        "descripcion": "PIZZA DE JAMON Y MUZZARELLA CON ACEITUNA Y ORÉGANO",
+        "categoria": "pizza",
+        "linkImg": "../img/Pizzas/pizza_jamon.jpg",
+        "cantidad": 0,
+        "stock": true
+    },
+    {
+        "id": 202,
+        "nombre": "PIZZA NAPOLITANA",
+        "precio": 1050,
+        "descripcion": "PIZZA MUZZARELLA CON PEREJIL , AJO , RODAJA DE TOMATE , ACEITUNA Y ORÉGANO",
+        "categoria": "pizza",
+        "linkImg": "../img/Pizzas/pizza_napo.jpg",
+        "cantidad": 0,
+        "stock": true
+    },
+    {
+        "id": 203,
+        "nombre": "PIZZA FUGAZZETA",
+        "precio": 1000,
+        "descripcion": "PIZZA MUZZARELLA CON CEBOLLA ,ACEITUNA Y ORÉGANO",
+        "categoria": "pizza",
+        "linkImg": "../img/Pizzas/pizza_fugazzeta.jpg",
+        "cantidad": 0,
+        "stock": true
+    },
+    {
+        "id": 204,
+        "nombre": "PIZZA DE PEPERONI",
+        "precio": 1150,
+        "descripcion": "CLÁSICA PIZZA MUZZARELLA CON RODAJAS DE PEPERONI",
+        "categoria": "pizza",
+        "linkImg": "../img/Pizzas/pizza_peperoni.png",
+        "cantidad": 0,
+        "stock": true
+    },
+    {
+        "id": 205,
+        "nombre": "PIZZA DE ESPECIAL DE LA CASA",
+        "precio": 1300,
+        "descripcion": "PIZZA MUZZA CON MORRÓN,JAMÓN, HUEVO, QUESO RALLADO, ACEITUNA Y ORÉGANO",
+        "categoria": "pizza",
+        "linkImg": "../img/Pizzas/pizza_especialidad_casa.jpg",
+        "cantidad": 0,
+        "stock": true
+    },
+    {
+        "id": 300,
+        "nombre": "EMPANADA DE CARNE",
+        "precio": 180,
+        "descripcion": "CLÁSICA EMPANADA DE CARNE MOLIDA, HUEVO, ARVEJAS, MORRÓN",
+        "categoria": "empanada",
+        "linkImg": "../img/Empanadas/empanadas_carne.jpg",
+        "cantidad": 0,
+        "stock": true
+    },
+    {
+        "id": 301,
+        "nombre": "EMPANADA DE JAMON Y QUESO",
+        "precio": 180,
+        "descripcion": "CLÁSICA EMPANADA DE JAMÓN Y MUZZARELLA DERRETIDA AL HORNO",
+        "categoria": "empanada",
+        "linkImg": "../img/Empanadas/empanadas_jyq.jpg",
+        "cantidad": 0,
+        "stock": true
+    },
+    {
+        "id": 302,
+        "nombre": "EMPANADA DE CHOCLO",
+        "precio": 190,
+        "descripcion": "EMPANADAS DE CHOCLO MOLIDO CON MORRÓN Y ESPECIAS AL HORNO",
+        "categoria": "empanada",
+        "linkImg": "../img/Empanadas/empanadas_humita.png",
+        "cantidad": 0,
+        "stock": true
+    },
+    {
+        "id": 303,
+        "nombre": "EMPANADAS SALTEÑAS",
+        "precio": 190,
+        "descripcion": "CLÁSICAS EMPANADAS DE CARNE CORTADA A CUCHILLO AL ESTILO DE SALTA",
+        "categoria": "empanada",
+        "linkImg": "../img/Empanadas/empanadas_saltenias.jpg",
+        "cantidad": 0,
+        "stock": true
+    },
+    {
+        "id": 400,
+        "nombre": "MILANESA NAPOLITANA CON FRITAS",
+        "precio": 1200,
+        "descripcion": "MILANESA CON JAMÓN Y MUZZA CON GUARNICIÓN DE PAPAS FRITAS",
+        "categoria": "minuta",
+        "linkImg": "../img/Minutas/milanesa_fritas.jpg",
+        "cantidad": 0,
+        "stock": true
+    },
+    {
+        "id": 401,
+        "nombre": "MILANESA NAPOLITANA CON PURE",
+        "precio": 1150,
+        "descripcion": "MILANESA AL HORNO CON GUARNICIÓN DE PURE",
+        "categoria": "minuta",
+        "linkImg": "../img/Minutas/milanes_pure.jpg",
+        "cantidad": 0,
+        "stock": true
+    },
+    {
+        "id": 402,
+        "nombre": "SÁNDWICH DE MILANESA COMPLETO",
+        "precio": 1250,
+        "descripcion": "SÁNDWICH DE MILANESA CON TOMATE, LECHUGA, JAMÓN Y QUESO, CON GUARNICIÓN DE FRITAS",
+        "categoria": "minuta",
+        "linkImg": "../img/Minutas/sandwich_milanesaC.jpg",
+        "cantidad": 0,
+        "stock": true
+    },
+    {
+        "id": 403,
+        "nombre": "HAMBURGUESA COMPLETA",
+        "precio": 1250,
+        "descripcion": "HAMBURGUESA CON TOMATE, LECHUGA, CEBOLLA, MORADA, JAMÓN Y QUESO CHÉDAR,CON GUARNICIÓN DE FRITAS",
+        "categoria": "minuta",
+        "linkImg": "../img/Minutas/hamburguesa_fritas.jpg",
+        "cantidad": 0,
+        "stock": true
+    },
+    {
+        "id": 500,
+        "nombre": "COCACOLA 1.5L",
+        "precio": 300,
+        "descripcion": " ",
+        "categoria": "bebida",
+        "linkImg": "../img/Bebidas/CocaCola.webp",
+        "cantidad": 0,
+        "stock": true
+    },
+    {
+        "id": 501,
+        "nombre": "PEPSI 1.5L",
+        "precio": 280,
+        "descripcion": " ",
+        "categoria": "bebida",
+        "linkImg": "../img/Bebidas/Pepsi.jpg",
+        "cantidad": 0,
+        "stock": true
+    },
+    {
+        "id": 502,
+        "nombre": "CERVEZA SALTA RUBIA 1L",
+        "precio": 350,
+        "descripcion": " ",
+        "categoria": "bebida",
+        "linkImg": "../img/Bebidas/SaltaRubia.png",
+        "cantidad": 0,
+        "stock": true
+    },
+    {
+        "id": 503,
+        "nombre": "CERVEZA BRAHAMA 1L",
+        "precio": 350,
+        "descripcion": "",
+        "categoria": "bebida",
+        "linkImg": "../img/Bebidas/Brahama.webp",
+        "cantidad": 0,
+        "stock": true
+    }
+]
+

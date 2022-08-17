@@ -51,11 +51,6 @@ const bebida = [
 //inventario
 //const inventario = [...combos, ...pizza, ...empanada, ...minuta, ...bebida];
 const inventario = [];
-const combos = [];
-const pizza = [];
-const empanada = [];
-const minuta = [];
-const bebida = [];
 //carrito
 let carrito = [];
 //Crear las section 
@@ -67,7 +62,7 @@ window.onload = () => {
         showCarrito();
     }
 }
-
+//Resive los datos del Json
 function getInventario() {
     const url = "../json/inventario.json";
     fetch(url)
@@ -78,6 +73,7 @@ function getInventario() {
         .catch(err => console.log(err))
 
 }
+//filtra los elementos en base ala categoria y retorna un array con elementos de la misma categoria
 function filterCategoria(arrayProductos, categoria) {
     return arrayProductos.filter((producto) => producto.categoria == categoria);
 }
@@ -88,10 +84,11 @@ btnSearch.onclick = () => {
 }
 const arraySearch = []
 inputSearch.addEventListener("keyup", filtrarInput)
+//filtra en base al contenido los elementos que contengan en su nombre algo de la palabra buscada y si no hay muestra un mensaje de producto no encontrado
 function filtrarInput() {
     arraySearch.splice(0);
     let main = document.getElementById("contSection");
-    main.innerHTML=``
+    main.innerHTML = ``
     const texto = inputSearch.value.toUpperCase();
     for (let producto of inventario) {
         let nombre = producto.nombre.toUpperCase();
@@ -100,11 +97,12 @@ function filtrarInput() {
         }
     }
     crearHtml(arraySearch);
-    if(main.innerHTML === ""){
+    if (main.innerHTML === "") {
         main.innerHTML = `<h3 class="text-center"> producto no encontrado</h3>`
     }
 }
-function crearHtml(arrayProduc){
+//Crear las secctions de todos los productos o los filtrados
+function crearHtml(arrayProduc) {
     crearSection("Combos", "combo", filterCategoria(arrayProduc, "combo"));
     crearSection("Pizzas", "pizza", filterCategoria(arrayProduc, "pizza"));
     crearSection("Empanadas", "empanada", filterCategoria(arrayProduc, "empanada"));
@@ -128,11 +126,10 @@ function crearSection(subTitle, id, listaProductos) {
         section.append(divRow);
         divRow.innerHTML = crearProductos(listaProductos);
         const cardsProductos = document.querySelectorAll(".producto");
-        
-//Escucha si hacen click sobre las cards de un elemento para modificar el modal
+
+        //Escucha si hacen click sobre las cards de un elemento para modificar el modal
         cardsProductos.forEach(item => {
             item.addEventListener('click', () => {
-                console.log("pasa por el boton de llamado");
                 let idCardProducto = parseInt(item.id);
                 let productoFind = inventario.find((element) => element.id === idCardProducto)
                 editModal(productoFind);
@@ -262,10 +259,8 @@ function btnsCarrito() {
     const btnDel = document.querySelectorAll(".dBtnBuy");
     const precioLabel = document.querySelectorAll(".precioLabel");
     //Btn de Sumar cantidad a un producto
-    rBtnBuy.forEach(item => {
+    rBtnBuy.forEach((item, index) => {
         item.addEventListener('click', () => {
-            let arrayClasname = item.className.split(" ");
-            let index = parseInt(arrayClasname[2]);
             let { cantidad, precio } = carrito[index];
             cantidad >= 1 && btnDel[index].classList.replace("d-block", "d-none");
             cantidad >= 1 && lBtnBuy[index].classList.replace("d-none", "d-block");
@@ -277,10 +272,8 @@ function btnsCarrito() {
         })
     })
     //Btn de restar cantidad a un producto
-    lBtnBuy.forEach(item => {
+    lBtnBuy.forEach((item, index) => {
         item.addEventListener('click', () => {
-            let arrayClasname = item.className.split(" ");
-            let index = parseInt(arrayClasname[2]);
             let { cantidad, precio } = carrito[index];
             if (cantidad >= 1) {
                 cantidad <= 2 && btnDel[index].classList.replace("d-none", "d-block");
@@ -293,12 +286,9 @@ function btnsCarrito() {
             saveSessionStorage();
         })
     })
-
     //Boton de borrar para cada elemento.
-    btnDel.forEach(item => {
+    btnDel.forEach((item, index) => {
         item.addEventListener('click', () => {
-            let arrayClasname = item.className.split(" ");
-            let index = parseInt(arrayClasname[2]);
             carrito.splice(index, 1);
             showCarrito()
             let canasta = document.getElementById("carrito");
@@ -340,7 +330,7 @@ function showCarrito() {
                                 <p class="precioLabel">$${(carrito[i].precio * carrito[i].cantidad)}</p>
                             </div>
                             <div class="w-100">
-                                <div class="modalButton dBtnBuy ${i} ${classBtndl} "  >
+                                <div class="modalButton dBtnBuy ${classBtndl} "  >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                         viewBox="0 0 24 24" data-testid="delete">
                                         <path fill="#6A696E"
@@ -348,7 +338,7 @@ function showCarrito() {
                                         </path>
                                     </svg>
                                 </div>
-                                <div class="modalButton lBtnBuy ${i} ${classLbtn}" >
+                                <div class="modalButton lBtnBuy ${classLbtn}" >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                         viewBox="0 0 24 24" data-testid="remove">
                                         <path fill="#6A696E"
@@ -359,7 +349,7 @@ function showCarrito() {
                                 <div class="number">
                                     <span class="cant-prodBuy" color="graya100" data-testid="typography" value="1">${carrito[i].cantidad}</span>
                                 </div>
-                                <div class="modalButton rBtnBuy ${i}" >
+                                <div class="modalButton rBtnBuy " >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                         viewBox="0 0 24 24" data-testid="add">
                                         <path fill="#6a696e"
@@ -375,9 +365,6 @@ function showCarrito() {
     btnsCarrito();
 }
 
-
-
-
 //devuelve el precioFinal del carrito
 function getPrecioFinal() {
     const precioFinal = carrito.reduce((acumulador, producto) => acumulador += (producto.precio * producto.cantidad), 0);
@@ -387,10 +374,21 @@ function getPrecioFinal() {
 //boton para finalizar el pedido
 const btnFinal = document.getElementById("btnFinalizar");
 btnFinal.onclick = () => {
-    carrito.length != 0 && alert("Su pedido ha sido enviado");
-    showCarrito();
-    resetCarrito();
-    saveSessionStorage();
+    condition = carrito.length != 0 && true;
+    if (condition) {
+        Toastify({
+            text: "Su pedido ha sido enviado",
+            className: "info",
+            duration: 2000,
+            style: {
+                background: "linear-gradient(90deg, rgba(72,83,255,1) 0%, rgba(0,17,194,1) 50%, rgba(11,11,135,1) 100%)",
+            }
+        }).showToast();
+        showCarrito();
+        resetCarrito();
+        saveSessionStorage();
+    }
+
 }
 //boton para borrar el pedido
 const borra = document.getElementById("borrar");
@@ -416,8 +414,6 @@ borra.onclick = () => {
             }
         })
     }
-
-
 }
 //funcion para limpiar el carrito
 function resetCarrito() {

@@ -792,6 +792,7 @@ function eventoTarjeta() {
             resetCarrito();
             showCarrito();
             saveSessionStorage();
+            getInventario();
             Toastify({
                 text: "Su pedido ha sido enviado",
                 className: "info",

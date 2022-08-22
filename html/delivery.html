@@ -140,28 +140,34 @@
             </div>
         </div>
         <div class="searchNav w-100">
-            <button id="searchBtn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
-                    class="sc-GVOUr ewLtmx">
-                    <path fill="#6A696E"
-                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
-                    </path>
-                </svg>
-            </button>
-            <input type="text" id="buscar" placeholder="Busca en PIZZA PARTY...">
+            <div class="d-flex" id="sectionSearch">
+
+            </div>
+            <div id="usuCount">
+
+            </div>
+
         </div>
-        
+
     </nav>
     <!--End Nav-->
 
     <main id="main">
-        
+
         <div class="containerTitle">
             <h1 class="text-center my-3 color_title">Delivery</h1>
         </div>
+        <!-- Container productos -->
         <div id="contSection">
-
+            <div id="contBtn" class="container">
+                <button type="button" class="btn btnCheck" data-bs-toggle="modal" data-bs-target="#modalLogin"
+                    id="btnLogin">Ingrese su cuenta</button>
+                <button type="button" class="btn btnCheck" data-bs-toggle="modal" data-bs-target="#modalLogin"
+                    id="btnSign">Registrarse </button>
+            </div>
+            
         </div>
+        <!-- Modal para comprar -->
         <div class="modal fade" id="modal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content" id="modalWork">
@@ -207,6 +213,43 @@
                                     carrito</button>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal para logear -->
+        <div class="modal " id="modalLogin" data-bs-backdrop="static" tabindex="-1" aria-labelledby="modalLoginLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="modalLoginLabel">Registrarse</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body py-2 px-4">
+                        <input id="emailLogin" class="form-control my-4" type="email"
+                            placeholder="Ingresa tu correo electrónico" required>
+                        <input id="passwordLogin" class="form-control my-4" type="password"
+                            placeholder="Ingresa tu contraseña" required>
+                        <div class="modalInputMap form-control">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2b1a46"
+                                viewBox="0 0 16 16">
+                                <path
+                                    d="M7.622.5c2.45.104 4.29 1.179 5.428 3.25.518.944.723 1.989.627 3.105-.09 1.045-.465 2.004-1.109 2.905l-.182.245L8.3 15.3c-.373.484-.926.512-1.324.092l-.082-.096-4.22-5.477a5.501 5.501 0 0 1-1.138-2.8c-.187-1.773.356-3.34 1.599-4.636C4.113 1.363 5.34.756 6.788.555L6.985.53l.251-.015L7.622.5zm-.036 1-.452.023-.129.012-.359.056c-1.105.205-2.033.696-2.79 1.484-1.04 1.085-1.481 2.36-1.326 3.839.078.74.336 1.429.768 2.061l.17.235 4.13 5.361 3.998-5.18c.642-.826 1.004-1.684 1.085-2.622.08-.924-.087-1.771-.507-2.537-.922-1.68-2.353-2.564-4.322-2.716l-.266-.017zM7.57 3.7l.17.004c1.402.087 2.504 1.223 2.504 2.621a2.636 2.636 0 0 1-2.667 2.681c-1.478 0-2.668-1.181-2.67-2.634a2.681 2.681 0 0 1 2.495-2.668L7.57 3.7zm-.002 1-.142.005a1.68 1.68 0 0 0-1.518 1.667c0 .898.742 1.634 1.67 1.634a1.64 1.64 0 0 0 1.666-1.672c0-.859-.665-1.557-1.53-1.629L7.568 4.7z">
+                                </path>
+                            </svg>
+                            <input id="direc" class="form-control " type="text" placeholder="Ingrese su direccion"
+                                required>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-block">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="recordarme">
+                            <label class="form-check-label" for="recordarme">
+                                Recordarme en este equipo
+                            </label>
+                        </div>
+                        <button class="btn " id="btnIngDate" type="submit">Ingresar</button>
                     </div>
                 </div>
             </div>
@@ -270,7 +313,8 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Script Toasty -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <!-- Sciprt Luxon -->
+    <!-- Sciprt cleave -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
     <!-- Script Carrito -->
     <script src="../js/carrito.js"></script>
 
